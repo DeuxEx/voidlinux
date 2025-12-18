@@ -1,6 +1,5 @@
 
 myArray=(
-
 #[root@deux-void-840g6 void]# xbps-query -m
 alsa-pipewire
 alsa-plugins-pulseaudio
@@ -10,9 +9,11 @@ batsignal
 brltty
 chrony
 cryptsetup
+curl
 dejavu-fonts-ttf
 dialog
 emacs
+fastfetch
 firefox
 flatpak
 font-misc-misc
@@ -49,6 +50,7 @@ udisks2
 void-docs-browse
 void-live-audio
 void-repo-nonfree
+wget
 xauth
 xfce4
 xfce4-battery-plugin
