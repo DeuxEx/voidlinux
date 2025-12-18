@@ -13,7 +13,9 @@ xbps-install -Suv
 
 //Run the install.sh to install some nice features, like htop, telnet, mc etc etc
 
-https://github.com/DeuxEx/voidlinux/blob/main/after_install.sh
+
+#download the file with wget
+wget https://github.com/DeuxEx/voidlinux/blob/main/after_install.sh
 
 #Enable flatpak repository
 
@@ -24,7 +26,8 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 The default DE/Window manager is xfce and Ive configured this and made a tarball of it
 You can download it and install the .tar file
 
-https://github.com/DeuxEx/voidlinux/blob/main/xfce_settings_rev1.tar
+wget https://github.com/DeuxEx/voidlinux/blob/main/xfce_settings_rev1.tar
+
 
 #how i created the tarball
 #tar --create --file xfce_settings_rev1.tar --verbose .config/xfce4/xfconf/xfce-perchannel-xml/*
