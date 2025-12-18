@@ -7,6 +7,8 @@ update the packages when you have rebooted the computer
 xbps-install -Suv
 Run the install.sh to install some nice features, like htop, telnet, mc etc etc
 
+https://github.com/DeuxEx/voidlinux/blob/main/after_install.sh
+
 
 
 The default DE/Window manager is xfce and Ive configured this and made a tarball of it
