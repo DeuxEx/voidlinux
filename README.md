@@ -1,3 +1,6 @@
+#!/bin/sh
+
+
 First install the computer with a iso from void.
 
 https://voidlinux.org/download/
@@ -6,6 +9,8 @@ https://voidlinux.org/download/
 
 update the packages when you have rebooted the computer
 xbps-install -Suv
+
+
 //Run the install.sh to install some nice features, like htop, telnet, mc etc etc
 
 https://github.com/DeuxEx/voidlinux/blob/main/after_install.sh
