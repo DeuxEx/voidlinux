@@ -2,7 +2,11 @@
 
 This is just some memory for myself on how I install my Void Linux environment.
 
+Fastfetch info:
+<img width="1059" height="582" alt="image" src="https://github.com/user-attachments/assets/db183a6a-b297-45cf-b026-061590b300c8" />
 
+
+My flatpaks (containers)
 <img width="1725" height="470" alt="image" src="https://github.com/user-attachments/assets/8f199211-95ff-4df9-a6d6-e36b6dfd0aab" />
 
 
