@@ -1,5 +1,11 @@
 #!/bin/sh
 
+This is just some memory for myself on how I install my Void Linux environment.
+
+
+<img width="1725" height="470" alt="image" src="https://github.com/user-attachments/assets/8f199211-95ff-4df9-a6d6-e36b6dfd0aab" />
+
+
 
 First install the computer with a iso from void.
 
