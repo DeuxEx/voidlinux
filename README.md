@@ -9,24 +9,22 @@ https://voidlinux.org/download/
 
 
 
+#Run the install.sh to install some nice features, like htop, telnet, mc etc etc
 
-//Run the install.sh to install some nice features, like htop, telnet, mc etc etc
-
-
-#download the file with wget
-wget https://github.com/DeuxEx/voidlinux/blob/main/after_install.sh
-
-#Enable flatpak repository
-
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-
-
-The default DE/Window manager is xfce and Ive configured this and made a zip of it
-Binary downloads from github sucks, so clone the repository instead.
+#The default DE/Window manager is xfce and Ive configured this and made a zip of it
+#Binary downloads from github sucks, so clone the repository instead.
 
 
 git clone https://github.com/DeuxEx/voidlinux
+
+bash voidlinux/after_install.sh g
+
+
+#Enable flatpak repository
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+
+#setup the xfce4 the way I want it
 unzip -o voidlinux/xfce_settings_rev1.zip
 
 
