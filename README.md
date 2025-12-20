@@ -76,14 +76,31 @@ xbps-install --dry-run $(cat installed_packages.txt)
 
 
 
-#Rustdesk tarball install to be able to run it on server, because flatpaks wont autostart at boot, and xbps repo dont have rustdesk.
+# Set up bluetooth autostart
+sudo ln -s /etc/sv/bluetoothd /var/service/
 
-sudo xbps-install -S gcc cmake libxcb-devel libXi-devel openssl openssl-devel
-curl -LO https://rustdesk.com/builds/rustdesk-latest-x86_64-unknown-linux-gnu.tar.gz
-#tar xzf rustdesk-latest-x86_64-unknown-linux-gnu.tar.gz
+# Set up ACPI
+sudo ln -s /etc/sv/acpid/ /var/service/
+sudo sv enable acpid
+sudo sv start acpid
 
 
 
+
+# Install GPU drivers
+install_gpu_driver() {
+  gpu_driver=""
+  case "$(lspci | grep -E 'VGA|3D')" in
+    *Intel*) gpu_driver="mesa-dri intel-video-accel vulkan-loader mesa-vulkan-intel" ;;
+    *AMD*)   gpu_driver="mesa-dri mesa-vaapi mesa-vdpau vulkan-loader mesa-vulkan-radeon" ;;
+    *NVIDIA*)gpu_driver="mesa-dri nvidia nvidia-libs-32bit" ;;
+  esac
+  for pkg in $gpu_driver; do
+    [ -n "$pkg" ] && sudo xbps-install -y "$pkg"
+  done
+}
+
+install_gpu_driver
 
 
 
