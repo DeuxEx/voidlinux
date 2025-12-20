@@ -70,5 +70,5 @@ zip
 unzip
 )
 
-for str in ${myArray[@]}; do   echo $str;xbps-install $str; done
+for str in ${myArray[@]}; do   echo $str;xbps-install -y $str; done
 
