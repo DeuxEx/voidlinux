@@ -71,9 +71,24 @@ tar -czvf home_configs_$(date +%F).tar.gz ~/.bashrc ~/.config /home/void/.local/
 xbps-query -m > installed_packages.txt
 # To reinstall:
 # sudo xbps-install -S -R repo-main.voidlinux.org -r <your-arch> $(cat installed_packages.txt)
-
 #dry-run
 xbps-install --dry-run $(cat installed_packages.txt)
+
+
+
+#Rustdesk tarball install to be able to run it on server, because flatpaks wont autostart at boot, and xbps repo dont have rustdesk.
+
+sudo xbps-install -S gcc cmake libxcb-devel libXi-devel openssl openssl-devel
+curl -LO https://rustdesk.com/builds/rustdesk-latest-x86_64-unknown-linux-gnu.tar.gz
+#tar xzf rustdesk-latest-x86_64-unknown-linux-gnu.tar.gz
+
+
+
+
+
+
+
+
 
 Fastfetch info:
 <img width="1059" height="582" alt="image" src="https://github.com/user-attachments/assets/db183a6a-b297-45cf-b026-061590b300c8" />
