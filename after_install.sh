@@ -1,4 +1,7 @@
+
+# update xbps
 xbps-install -u xbps 
+# update system 
 xbps-install -Suv
 
 
