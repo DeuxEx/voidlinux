@@ -23,16 +23,17 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 
 
 The default DE/Window manager is xfce and Ive configured this and made a zip of it
-You can download it here and unzip it
+Binary downloads from github sucks, so clone the repository instead.
 
-wget https://github.com/DeuxEx/voidlinux/blob/main/xfce_settings_rev1.zip
+
+git clone https://github.com/DeuxEx/voidlinux
+unzip -o voidlinux/xfce_settings_rev1.zip
+
 
 #how i created the zip
-zip xfce_settings_rev1.zip .config/xfce4/xfconf/xfce-perchannel-xml/*
-#extract
-unzip -o xfce_settings_rev1.zip
+#zip xfce_settings_rev1.zip .config/xfce4/xfconf/xfce-perchannel-xml/*
 #show content
-ls -l .config/xfce4/xfconf/xfce-perchannel-xml/
+#ls -l .config/xfce4/xfconf/xfce-perchannel-xml/
 
 
 
