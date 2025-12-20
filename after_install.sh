@@ -66,6 +66,8 @@ xorg-input-drivers
 xorg-minimal
 xorg-video-drivers
 #nvidia
+zip
+unzip
 )
 
 for str in ${myArray[@]}; do   echo $str;xbps-install $str; done
