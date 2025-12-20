@@ -1,3 +1,6 @@
+xbps-install -u xbps 
+xbps-install -Suv
+
 
 myArray=(
 #[root@deux-void-840g6 void]# xbps-query -m
