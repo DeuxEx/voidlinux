@@ -1,12 +1,19 @@
 #!/bin/sh
 
-This is just some memory for myself on how I install my Void Linux environment.
+#This is just some memory for myself on how I install my Void Linux environment.
 
 
-First install the computer with a iso from void.
+#First install the computer with a iso from void.
 
-https://voidlinux.org/download/
+#https://voidlinux.org/download/
 
+#xfce alternative
+#I use musl with xfce
+
+#glibc
+#https://repo-default.voidlinux.org/live/current/void-live-x86_64-20250202-xfce.iso
+#musl
+#https://repo-default.voidlinux.org/live/current/void-live-x86_64-musl-20250202-xfce.iso
 
 
 #Run the install.sh to install some nice features, like htop, telnet, mc etc etc
