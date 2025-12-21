@@ -145,3 +145,13 @@ LXQt:
 
 
 
+
+
+
+
+Steam
+
+I’ve mentioned Steam before so i will mention it again for those who installed ‘Local’
+
+You first enable multilib, nonfree and multilib-nonfree repositories by installing the void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree packages, 
+then sync the repos with sudo xbps-install -S, and then you can just install the steam package. I’m not entirely sure if the multilib repos are needed but just in case.
