@@ -76,6 +76,28 @@ ls -l ~/.config/autostart
 
 
 
+#Create a Custom Service
 
+# Create service directory
+mkdir -p /etc/sv/myapp
 
+# Create the run script
+cat > /etc/sv/myapp/run << 'EOF'
+#!/bin/sh
+exec chpst -u myapp:myapp /usr/bin/python3 /opt/myapp/app.py 2>&1
+EOF
+
+# Make it executable
+chmod +x /etc/sv/myapp/run
+
+# Create log service
+mkdir -p /etc/sv/myapp/log
+cat > /etc/sv/myapp/log/run << 'EOF'
+#!/bin/sh
+exec svlogd -tt /var/log/myapp
+EOF
+chmod +x /etc/sv/myapp/log/run
+
+# Enable the service
+ln -s /etc/sv/myapp /var/service/
 
