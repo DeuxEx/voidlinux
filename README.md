@@ -8,7 +8,8 @@
 #https://voidlinux.org/download/
 
 #xfce alternative
-#I use musl with xfce
+#I use glibc with xfce window manager
+
 
 #glibc
 #https://repo-default.voidlinux.org/live/current/void-live-x86_64-20250202-xfce.iso
