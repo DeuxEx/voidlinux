@@ -57,6 +57,14 @@ install_gpu_driver() {
 
 install_gpu_driver
 
+#To install the driver, simply install the void-repo-nonfree package, synchronize the repos with sudo xbps-install -Su and then install the appropriate version of the driver:
+
+nvidia for GTX 750 Ti (<3), 800 series and above
+nvidia470 for 600 and 700 series
+nvidia390 for 400 and 500 series
+
+
+
 
 
 #install rustdesk flatpak, and do this for making it autostarting
