@@ -15,7 +15,7 @@ batsignal
 brltty
 chrony
 cryptsetup
-curl
+#curl
 dejavu-fonts-ttf
 dialog
 emacs
@@ -35,6 +35,7 @@ gvfs-mtp
 gvfs-smb
 htop
 inetutils-telnet
+intel-ucode
 lightdm
 lightdm-gtk-greeter
 lvm2
@@ -56,7 +57,9 @@ udisks2
 void-docs-browse
 void-live-audio
 void-repo-nonfree
-wget
+void-repo-multilib
+void-repo-multilib-nonfree
+#wget
 xauth
 xfce4
 xfce4-battery-plugin
