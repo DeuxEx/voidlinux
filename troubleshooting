@@ -9,6 +9,7 @@ Enable the necessary services:
 ln -s /etc/sv/wpa_supplicant /var/service
 ln -s /etc/sv/dhcpcd /var/service
 
+
 Run the services:
 sv -v up wpa_supplicant
 sv -v up dhcpcd
@@ -59,9 +60,9 @@ install_gpu_driver
 
 #To install the driver, simply install the void-repo-nonfree package, synchronize the repos with sudo xbps-install -Su and then install the appropriate version of the driver:
 
-nvidia for GTX 750 Ti (<3), 800 series and above
-nvidia470 for 600 and 700 series
-nvidia390 for 400 and 500 series
+#nvidia for GTX 750 Ti (<3), 800 series and above
+#nvidia470 for 600 and 700 series
+#nvidia390 for 400 and 500 series
 
 
 
@@ -74,7 +75,7 @@ ls /var/lib/flatpak/exports/share/applications/
 mkdir -p ~/.config/autostart
 ln -s /var/lib/flatpak/exports/share/applications/com.rustdesk.RustDesk.desktop ~/.config/autostart/
 ls -l ~/.config/autostart
-#lrwxrwxrwx 1 root root 73 Dec 20 19:45 com.rustdesk.RustDesk.desktop -> /var/lib/flatpak/exports/share/applications/com.rustdesk.RustDesk.desktop
+#com.rustdesk.RustDesk.desktop -> /var/lib/flatpak/exports/share/applications/com.rustdesk.RustDesk.desktop
 
 
 
@@ -155,3 +156,6 @@ I’ve mentioned Steam before so i will mention it again for those who installed
 
 You first enable multilib, nonfree and multilib-nonfree repositories by installing the void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree packages, 
 then sync the repos with sudo xbps-install -S, and then you can just install the steam package. I’m not entirely sure if the multilib repos are needed but just in case.
+
+
+
