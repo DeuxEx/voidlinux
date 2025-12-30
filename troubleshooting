@@ -158,4 +158,6 @@ You first enable multilib, nonfree and multilib-nonfree repositories by installi
 then sync the repos with sudo xbps-install -S, and then you can just install the steam package. I’m not entirely sure if the multilib repos are needed but just in case.
 
 
+xbps-install steam
+xbps-install -S libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit mesa-dri-32bit
 
