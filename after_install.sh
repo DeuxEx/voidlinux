@@ -7,6 +7,10 @@ xbps-install -Suv
 
 myArray=(
 #[root@deux-void-840g6 void]# xbps-query -m
+mugshot
+neovim
+rsClock
+steam
 alsa-pipewire
 alsa-plugins-pulseaudio
 alsa-ucm-conf
@@ -64,6 +68,8 @@ xauth
 xfce4
 xfce4-battery-plugin
 xfce4-pulseaudio-plugin
+xfce4-alsa-plugin
+xfce4-whiskermenu-plugin
 xorg
 xorg-input-drivers
 xorg-minimal
