@@ -20,6 +20,12 @@ sudo rm /var/service/lightdm
 
 
 
+To autostart RustDesk on Void Linux, use its built-in service for X11 with
+sudo sv enable rustdesk and sudo ln -s /etc/sv/rustdesk /etc/runit/runsvdir/sv/, then ensure you're using X11, not Wayland, as Wayland often breaks autostart;
+alternatively, for user-level autostart in your desktop environment, create a .desktop file in ~/.config/autostart/ for GUI launches, but the rustdesk --service method is best for system-wide background access. 
+
+
+
 
 
 
@@ -168,6 +174,7 @@ MATE:
 # xbps-install lightdm lightdm-gtk3-greeter mate mate-extra gnome-keyring network-manager-applet gvfs-afc gvfs-mtp gvfs-smb udisks2 firefox engrampa pluma
 
 LXQt:
+# good to user if xfce fails, this is more lightweighr:
 # xbps-install lxqt sddm gvfs-afc gvfs-mtp gvfs-smb udisks2 firefox nm-tray pcmanfm-qt FeatherPad qterminal
 
 
@@ -181,7 +188,11 @@ Steam
 
 I’ve mentioned Steam before so i will mention it again for those who installed ‘Local’
 
-You first enable multilib, nonfree and multilib-nonfree repositories by installing the void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree packages, 
+You first enable multilib, nonfree and multilib-nonfree repositories by installing the 
+void-repo-nonfree 
+void-repo-multilib 
+void-repo-multilib-nonfree
+packages, 
 then sync the repos with sudo xbps-install -S, and then you can just install the steam package. I’m not entirely sure if the multilib repos are needed but just in case.
 
 
