@@ -6,7 +6,9 @@ xbps-install -Suv
 
 
 myArray=(
-#[root@deux-void-840g6 void]# xbps-query -m
+void-repo-nonfree
+void-repo-multilib
+void-repo-multilib-nonfree
 mugshot
 neovim
 rsClock
@@ -60,9 +62,6 @@ tmux
 udisks2
 void-docs-browse
 void-live-audio
-void-repo-nonfree
-void-repo-multilib
-void-repo-multilib-nonfree
 #wget
 xauth
 xfce4
