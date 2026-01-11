@@ -101,20 +101,6 @@ install_gpu_driver
 
 
 
-#install rustdesk flatpak, and do this for making it autostarting
-ls /var/lib/flatpak/exports/share/applications/
-#com.rustdesk.RustDesk.desktop  mimeinfo.cache
-
-mkdir -p ~/.config/autostart
-ln -s /var/lib/flatpak/exports/share/applications/com.rustdesk.RustDesk.desktop ~/.config/autostart/
-ls -l ~/.config/autostart
-#com.rustdesk.RustDesk.desktop -> /var/lib/flatpak/exports/share/applications/com.rustdesk.RustDesk.desktop
-
-
-
-
-
-
 
 
 
