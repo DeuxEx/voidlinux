@@ -16,17 +16,18 @@
 #https://repo-default.voidlinux.org/live/current/void-live-x86_64-musl-20250202-xfce.iso
 
 
-#Run the install.sh to install some nice features, like htop, telnet, mc etc etc
-
-
 xbps-install git
 git clone https://github.com/DeuxEx/voidlinux
 
+
+#run the voidlinux/install.sh to install some good applications and routines, like htop, telnet, mc etc
 bash voidlinux/after_install.sh g
 
 
 #Enable flatpak repository
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+#rustdesk
+#opera
 
 
 #The default DE/Window manager is xfce and Ive configured this and made a zip of it
