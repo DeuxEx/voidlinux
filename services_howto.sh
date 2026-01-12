@@ -60,3 +60,20 @@ ln -s /etc/sv/myapp /var/service/
 
 
 
+
+
+
+#To see enabled services for "current" runlevel:
+ls -l /var/service/
+
+#To see available runlevels (default and single, which just runs sulogin):
+ls -l /etc/runit/runsvdir
+
+#To enable and start a service into the "current" runlevel:
+ln -s /etc/sv/<service> /var/service
+
+#To disable and remove a service:
+rm -f /var/service/<service>
+
+#To view status of all services for "current" runlevel:
+sv status /var/service/*
