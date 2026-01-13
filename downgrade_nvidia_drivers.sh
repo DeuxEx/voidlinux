@@ -283,4 +283,6 @@ xbps-query nvidia
 xbps-pkgdb -m hold nvidia-580.105.08_1 nvidia nvidia-dkms nvidia-firmware nvidia-gtklibs nvidia-libs
 
 # the hold can be unhold in the future
+# xbps-pkgdb -m unhold <package>
+
 
