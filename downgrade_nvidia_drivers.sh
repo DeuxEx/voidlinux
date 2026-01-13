@@ -267,3 +267,31 @@ nvidia-580.105.08_1: installed successfully.
 
 0 downloaded, 1 installed, 4 updated, 5 configured, 0 removed, 0 on hold.
 [root@deux-void-gamingrig void]# 
+
+
+To prevent a package from being updated during a system update, use xbps-pkgdb(1):
+
+# xbps-pkgdb -m hold <package>
+The hold can be removed with:
+
+# xbps-pkgdb -m unhold <package>
+
+xbps-rindex -a /var/cache/xbps/nvidia-580.105.08_1.x86_64.xbps
+xbps-rindex -a /var/cache/xbps/nvidia-libs-580.105.08_1.xbps
+xbps-rindex -a /var/cache/xbps/nvidia-580.105.08_1.x86_64.xbps
+xbps-rindex -a /var/cache/xbps/nvidia-libs-580.105.08_1.x86_64.xbps
+xbps-rindex -a /var/cache/xbps/nvidia-gtklibs-580.105.08_1.x86_64.xbps
+xbps-rindex -a /var/cache/xbps/nvidia-dkms-580.105.08_1.x86_64.xbps
+xbps-rindex -a /var/cache/xbps/nvidia-firmware-580.105.08_1.x86_64.xbps
+
+
+xbps-pkgdb -m hold /var/cache/xbps/nvidia-580.105.08_1.x86_64.xbps
+xbps-pkgdb -m hold 
+xbps-pkgdb -m hold 
+xbps-pkgdb -m hold 
+xbps-pkgdb -m hold 
+xbps-pkgdb -m hold 
+xbps-pkgdb -m hold 
+
+
+
