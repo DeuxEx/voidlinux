@@ -3,7 +3,7 @@
 # Install GPU drivers
 install_gpu_driver() {
   gpu_driver=""
-  case "$(lspci | grep -E 'VGA|3D')" in
+  case "$(lspci | grep -E 'VGA')" in
     *Intel*) gpu_driver="mesa-dri intel-video-accel vulkan-loader mesa-vulkan-intel" ;;
     *AMD*)   gpu_driver="mesa-dri mesa-vaapi mesa-vdpau vulkan-loader mesa-vulkan-radeon" ;;
     *NVIDIA*)gpu_driver="mesa-dri nvidia nvidia-libs-32bit" ;;
