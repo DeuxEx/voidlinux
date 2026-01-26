@@ -51,11 +51,9 @@ xbps-rindex -a /var/cache/xbps/nvidia-dkms-580.105.08_1.x86_64.xbps
 xbps-query nvidia
 
 
-#To prevent a package from being updated during a system update, use xbps-pkgdb(1):
-
-
-# put the packages on hold, so we dont by mistake install the new versions over again
-# xbps-pkgdb -m unhold <package>
+#To prevent a package from being updated during a system update, use xbps-pkgdb:
+#Put the packages on hold, so we dont by mistake install the new versions over again
+#xbps-pkgdb -m unhold <package>
 
 xbps-pkgdb -m hold nvidia-580.105.08_1 nvidia nvidia-dkms nvidia-firmware nvidia-gtklibs nvidia-libs
 
