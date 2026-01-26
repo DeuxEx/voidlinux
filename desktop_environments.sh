@@ -17,5 +17,5 @@ xbps-install lightdm lightdm-gtk3-greeter xfce4 gnome-themes-standard gnome-keyr
 xbps-install lightdm lightdm-gtk3-greeter mate mate-extra gnome-keyring network-manager-applet gvfs-afc gvfs-mtp gvfs-smb udisks2 firefox engrampa pluma
 
 #LXQt:
-# good to user if xfce fails, this is more lightweighr:
+# good to user if xfce fails, this is more lightweight:
 xbps-install lxqt sddm gvfs-afc gvfs-mtp gvfs-smb udisks2 firefox nm-tray pcmanfm-qt FeatherPad qterminal
