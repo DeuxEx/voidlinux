@@ -54,8 +54,8 @@ xbps-query nvidia
 #To prevent a package from being updated during a system update, use xbps-pkgdb:
 #Put the packages on hold, so we dont by mistake install the new versions over again
 
-xbps-pkgdb -m hold nvidia-580.105.08_1 nvidia nvidia-dkms nvidia-firmware nvidia-gtklibs nvidia-libs
+xbps-pkgdb -m hold nvidia-580.105.08_1 nvidia nvidia-dkms nvidia-firmware nvidia-gtklibs nvidia-libs nvidia-libs-32bit
 
 # the hold can be unhold in the future when there are a new stable version thats working
 #xbps-pkgdb -m unhold <package>
-#xbps-pkgdb -m unhold nvidia nvidia-dkms nvidia-firmware nvidia-gtklibs nvidia-libs
+#xbps-pkgdb -m unhold nvidia nvidia-dkms nvidia-firmware nvidia-gtklibs nvidia-libs nvidia-libs-32bit
