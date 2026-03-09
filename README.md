@@ -32,14 +32,13 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 #flatpak install opera
 
 
-#The default DE/Window manager is xfce and Ive configured this and made a zip of it
-
-unzip -o voidlinux/xfce_settings_rev2.zip
-
-
+#If using xfce Ive configured the activity-bar and made a zip of it
+#unzip -o voidlinux/xfce_settings_rev2.zip
 #how i created the zip, -r = recurse
 #zip -r xfce_settings_rev2.zip .config/xfce4/xfconf/xfce-perchannel-xml/* ~/.config/xfce4/ ~/.bashrc ~/.bash_profile /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml /etc/skel/.bashrc /etc/skel/.bash_profile ~/.inputrc /home/void/.config/xfce4/panel/launcher-*
 
+
+if using cinnamon (which I do) ive backed up my settings here:
 
 
 
