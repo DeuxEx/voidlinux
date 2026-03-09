@@ -7,12 +7,14 @@
 
 #https://voidlinux.org/download/
 
-#I use glibc with xfce window manager
+#I use glibc base (no window manager)
 #musl is for thinner single processing computers without need of GPU and other repositories than the default in xbps.
 
-#glibc
+#glibc base
+https://repo-default.voidlinux.org/live/current/void-live-x86_64-20250202-base.iso
+#glibc with xfce
 #https://repo-default.voidlinux.org/live/current/void-live-x86_64-20250202-xfce.iso
-#musl
+#musl withc xfce
 #https://repo-default.voidlinux.org/live/current/void-live-x86_64-musl-20250202-xfce.iso
 
 
@@ -26,8 +28,8 @@ bash voidlinux/after_install.sh g
 
 #Enable flatpak repository
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-#rustdesk
-#opera
+#flatpak install rustdesk
+#flatpak install opera
 
 
 #The default DE/Window manager is xfce and Ive configured this and made a zip of it
