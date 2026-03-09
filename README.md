@@ -41,4 +41,12 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 if using cinnamon (which I do) ive backed up my settings here:
 
 
+#NANO
+#create tarball with my nano-settings
+#tar -czvf nano-settings.tar /etc/nanorc /root/.nano/
+#untar
+tar -xvf nano-settings.tar
+
+
+
 
