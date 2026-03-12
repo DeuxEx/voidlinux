@@ -102,6 +102,18 @@ if using cinnamon (which I do) ive backed up my settings here:
 #untar
 tar -xvf nano-settings.tar
 
+  _    _ ________          __
+ | |  | |  ____\ \        / /
+ | |  | | |__   \ \  /\  / / 
+ | |  | |  __|   \ \/  \/ /  
+ | |__| | |       \  /\  /   
+  \____/|_|        \/  \/    
+                             
+if using ufw (uncomplicated firewall) here are my backup up settings for my firewall:
+#create tarball
+tar .czvf ufw-rules.tar /etc/ufw/
+#untar the tarball
+untar -xvf ufw-rules.tar
 
 
 
