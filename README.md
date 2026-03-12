@@ -8,9 +8,6 @@
     \  / | |__| || |_| |__| | | |____ _| |_| |\  | |__| |/ . \ 
      \/   \____/_____|_____/  |______|_____|_| \_|\____//_/ \_\
                                                                
-                                                               
-                                                     
-
 #This is just some notes,configs and reminders for myself on how I install my Void Linux environment.
 
 
@@ -28,10 +25,6 @@
     \  / ____ \| | \ \ _| |_ / ____ \| |\  |  | |  ____) |
      \/_/    \_\_|  \_\_____/_/    \_\_| \_|  |_| |_____/ 
                                                           
-                                                          
-                                                   
-                                                   
-                                         
 #glibc base
 https://repo-default.voidlinux.org/live/current/void-live-x86_64-20250202-base.iso
 #glibc with xfce
@@ -53,8 +46,6 @@ bash voidlinux/after_install.sh g
  |  __| | |      / /\ \ | |  |  ___/ /\ \ |  <  
  | |    | |____ / ____ \| |  | |  / ____ \| . \ 
  |_|    |______/_/    \_\_|  |_| /_/    \_\_|\_\
-                                                
-                                                
                                                                     
 #Enable flatpak repository
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -67,8 +58,6 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
    > < |  __|| |    |  __|  
   / . \| |   | |____| |____ 
  /_/ \_\_|    \_____|______|
-                            
-                            
                                                                
 #If using xfce Ive configured the activity-bar and made a zip of it
 #unzip -o voidlinux/xfce_settings_rev2.zip
@@ -81,8 +70,6 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
  | |      | | | . ` | . ` | / /\ \ | |\/| | |  | | . ` |
  | |____ _| |_| |\  | |\  |/ ____ \| |  | | |__| | |\  |
   \_____|_____|_| \_|_| \_/_/    \_\_|  |_|\____/|_| \_|
-                                                        
-                                                        
                                             
 if using cinnamon (which I do) ive backed up my settings here:
 #tar -czvf cinnamon_config_backup.tar.gz ~/.cinnamon ~/.local/share/cinnamon ~/.config/cinnamon /home/void/.local/share/cinnamon/
@@ -94,8 +81,6 @@ if using cinnamon (which I do) ive backed up my settings here:
  | . ` | / /\ \ | . ` | |  | |
  | |\  |/ ____ \| |\  | |__| |
  |_| \_/_/    \_\_| \_|\____/ 
-                              
-                              
 
 #create tarball with my nano-settings
 #tar -czvf nano-settings.tar /etc/nanorc /root/.nano/
