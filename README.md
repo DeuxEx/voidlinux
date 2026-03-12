@@ -47,39 +47,55 @@ git clone https://github.com/DeuxEx/voidlinux
 #run the voidlinux/install.sh to install some good applications and routines, like htop, telnet, mc etc
 bash voidlinux/after_install.sh g
 
-▗▄▄▄▖▗▖    ▗▄▖▗▄▄▄▖▗▄▄▖  ▗▄▖ ▗▖ ▗▖
-▐▌   ▐▌   ▐▌ ▐▌ █  ▐▌ ▐▌▐▌ ▐▌▐▌▗▞▘
-▐▛▀▀▘▐▌   ▐▛▀▜▌ █  ▐▛▀▘ ▐▛▀▜▌▐▛▚▖ 
-▐▌   ▐▙▄▄▖▐▌ ▐▌ █  ▐▌   ▐▌ ▐▌▐▌ ▐▌
+  ______ _            _______ _____        _  __
+ |  ____| |        /\|__   __|  __ \ /\   | |/ /
+ | |__  | |       /  \  | |  | |__) /  \  | ' / 
+ |  __| | |      / /\ \ | |  |  ___/ /\ \ |  <  
+ | |    | |____ / ____ \| |  | |  / ____ \| . \ 
+ |_|    |______/_/    \_\_|  |_| /_/    \_\_|\_\
+                                                
+                                                
                                                                     
 #Enable flatpak repository
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 #flatpak install rustdesk
 #flatpak install opera
 
-▗▖  ▗▖▗▄▄▄▖ ▗▄▄▖▗▄▄▄▖
- ▝▚▞▘ ▐▌   ▐▌   ▐▌   
-  ▐▌  ▐▛▀▀▘▐▌   ▐▛▀▀▘
-▗▞▘▝▚▖▐▌   ▝▚▄▄▖▐▙▄▄▖
+ __   ________ _____ ______ 
+ \ \ / /  ____/ ____|  ____|
+  \ V /| |__ | |    | |__   
+   > < |  __|| |    |  __|  
+  / . \| |   | |____| |____ 
+ /_/ \_\_|    \_____|______|
+                            
+                            
                                                                
 #If using xfce Ive configured the activity-bar and made a zip of it
 #unzip -o voidlinux/xfce_settings_rev2.zip
 #how i created the zip, -r = recurse
 #zip -r xfce_settings_rev2.zip .config/xfce4/xfconf/xfce-perchannel-xml/* ~/.config/xfce4/ ~/.bashrc ~/.bash_profile /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml /etc/skel/.bashrc /etc/skel/.bash_profile ~/.inputrc /home/void/.config/xfce4/panel/launcher-*
 
- ▗▄▄▖▗▄▄▄▖▗▖  ▗▖▗▖  ▗▖ ▗▄▖ ▗▖  ▗▖ ▗▄▖ ▗▖  ▗▖
-▐▌     █  ▐▛▚▖▐▌▐▛▚▖▐▌▐▌ ▐▌▐▛▚▞▜▌▐▌ ▐▌▐▛▚▖▐▌
-▐▌     █  ▐▌ ▝▜▌▐▌ ▝▜▌▐▛▀▜▌▐▌  ▐▌▐▌ ▐▌▐▌ ▝▜▌
-▝▚▄▄▖▗▄█▄▖▐▌  ▐▌▐▌  ▐▌▐▌ ▐▌▐▌  ▐▌▝▚▄▞▘▐▌  ▐▌
+   _____ _____ _   _ _   _          __  __  ____  _   _ 
+  / ____|_   _| \ | | \ | |   /\   |  \/  |/ __ \| \ | |
+ | |      | | |  \| |  \| |  /  \  | \  / | |  | |  \| |
+ | |      | | | . ` | . ` | / /\ \ | |\/| | |  | | . ` |
+ | |____ _| |_| |\  | |\  |/ ____ \| |  | | |__| | |\  |
+  \_____|_____|_| \_|_| \_/_/    \_\_|  |_|\____/|_| \_|
+                                                        
+                                                        
                                             
 if using cinnamon (which I do) ive backed up my settings here:
 #tar -czvf cinnamon_config_backup.tar.gz ~/.cinnamon ~/.local/share/cinnamon ~/.config/cinnamon /home/void/.local/share/cinnamon/
 #untar -xvf cinnamon_config_backup.tar.gz
 
-▗▖  ▗▖ ▗▄▖ ▗▖  ▗▖ ▗▄▖ 
-▐▛▚▖▐▌▐▌ ▐▌▐▛▚▖▐▌▐▌ ▐▌
-▐▌ ▝▜▌▐▛▀▜▌▐▌ ▝▜▌▐▌ ▐▌
-▐▌  ▐▌▐▌ ▐▌▐▌  ▐▌▝▚▄▞▘
+  _   _          _   _  ____  
+ | \ | |   /\   | \ | |/ __ \ 
+ |  \| |  /  \  |  \| | |  | |
+ | . ` | / /\ \ | . ` | |  | |
+ | |\  |/ ____ \| |\  | |__| |
+ |_| \_/_/    \_\_| \_|\____/ 
+                              
+                              
 
 #create tarball with my nano-settings
 #tar -czvf nano-settings.tar /etc/nanorc /root/.nano/
