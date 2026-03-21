@@ -15,24 +15,34 @@ install_gpu_driver() {
 
 install_gpu_driver
 
-#To install the driver, simply install the void-repo-nonfree package, synchronize the repos with sudo xbps-install -Su and then install the appropriate version of the driver:
-
-#nvidia for GTX 750 Ti (<3), 800 series and above
-#nvidia470 for 600 and 700 series
-#nvidia390 for 400 and 500 series
 
 
-Steam
-
-I’ve mentioned Steam before so i will mention it again for those who installed ‘Local’
-
-You first enable multilib, nonfree and multilib-nonfree repositories by installing the 
-void-repo-nonfree 
-void-repo-multilib 
-void-repo-multilib-nonfree
-packages, 
-then sync the repos with sudo xbps-install -S, and then you can just install the steam package. I’m not entirely sure if the multilib repos are needed but just in case.
+echo "Installing 2D Xorg accelaration packages"
+sudo xbps-install -Sy xf86-video-intel
 
 
+echo "Installing 3D accelaration packages"
+sudo xbps-install -Syu mesa-dri mesa-opencl gamemode mesa-vulkan-intel vulkan-loader Vulkan-Headers Vulkan-Tools ocl-icd
+
+
+echo "Installing Video accelaration packages"
+sudo xbps-install -Syu mesa-vaapi mesa-vdpau intel-video-accel libspa-vulkan libva
+
+
+echo "Installing 32bit 3D accelaration packages, Will fail on Musl"
+sudo xbps-install -Syu mesa-dri-32bit mesa-opencl-32bit mesa-vulkan-intel-32bit vulkan-loader-32bit ocl-icd-32bit libgamemode-32bit mesa-vulkan-nouveau-32bit
+
+
+echo "Installing 32bit Video accelaration packages, Will fail on Musl"
+sudo xbps-install -Sy mesa-vaapi-32bit mesa-vdpau-32bit libspa-vulkan-32bit libva-32bit
+
+
+#nvidia install and nvidia dependencies
+sudo xbps-install nvidia nvidia-libs-32bit nvidia-opencl nvidia-docker vulkan-loader vulkan-loader-32bit Vulkan-Headers Vulkan-Tools libspa-vulkan libspa-vulkan-32bit ocl-icd ocl-icd-32bit nvidia-vaapi-driver
+
+
+#steam install and steam dependencies
 xbps-install steam
 xbps-install -S libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit mesa-dri-32bit
+
+
