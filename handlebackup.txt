@@ -1,0 +1,17 @@
+#create backup of all files in home/.config/
+
+tar --exclude=/home/deux/.config/mozilla --exclude=/home/deux/.config/vivaldi --exclude=/home/deux/.config/libaccounts-glib -cvf kde_configbackup.tar /home/deux/.config/
+
+#c=create
+#v=verbose
+#f=sets the name of the archive
+
+#restore backup to home/.config/
+
+#-x: Extract
+#-v: Verbose (show progress)
+#-p: Preserve permissions
+#-z: Use gzip
+#-C /: Change to the root directory first (essential if the tar was made with relative paths like home/user/file or absolute paths /home/use
+
+tar -xvpf kde_configbackup.tar
