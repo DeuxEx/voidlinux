@@ -61,7 +61,6 @@ xdg-user-dirs-gtk
 xf86-video-intel
 xorg-minimal
 xtools
-
 )
 
 for str in ${myArray[@]}; do   echo $str;xbps-install -y $str; done
