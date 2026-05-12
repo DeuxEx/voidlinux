@@ -87,9 +87,6 @@ BASE_PACKAGES=(
   NetworkManager
   neovim
   vim
-  mc
-  nano
-  vsv
 )
 
 #===========#
