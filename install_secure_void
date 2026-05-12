@@ -1,0 +1,457 @@
+#!/usr/bin/env bash
+# This script is licensed under the MIT License.
+# Copyright (c) 2026 Luca Gödde
+## author: Gödde, Luca
+## project: Void Linux Install script
+## desc: An attempt to automate the install process of Void Linux (live environment)
+## date: 2026-03-07
+## updated: 2026-03-08
+
+set -euo pipefail # Enable errorhandling
+shopt -s extglob  # Enable whitespace trimming
+
+#=============#
+#  VARIABLES  #
+#=============#
+
+selectedKeyboardLayout=""
+selectedDisk=""
+isSsd=false
+efiPartition=""
+bootPartition=""
+rootPartition=""
+isEncrypted=false
+luksPartition=""
+luksName=""
+
+#=============#
+#  CONSTANTS  #
+#=============#
+
+USER_ID="$(id -u)"
+EFIVARDIR="/sys/firmware/efi/efivars"
+REPO="https://repo-de.voidlinux.org/current" # Change to a faster mirror for your location
+ARCH="x86_64"
+
+#==========#
+#  COLORS  #
+#==========#
+
+NORMAL="\033[0m"
+GREEN="\e[32m"
+PINK="\e[1;35m"
+RED="\e[31m"
+CYAN="\e[36m"
+BLUE="\033[1;34m"
+YELLOW="\e[1;33m"
+
+#============#
+#  PACKAGES  #
+#============#
+
+BASE_PACKAGES=(
+  base-system
+  efibootmgr
+  grub-x86_64-efi
+  grub-btrfs
+  grub-btrfs-runit
+  linux
+  linux-mainline
+  util-linux
+  btrfs-progs
+  cryptsetup
+  coreutils
+  binutils
+  xtools
+  bash-completion
+  apparmor
+  git
+  wget
+  curl
+  rsync
+  tar
+  unzip
+  zip
+  xmirror
+  NetworkManager
+  neovim
+  vim
+)
+
+#===========#
+#  CLEANUP  #
+#===========#
+
+# Unmounts and closes encrypted partitions if something fails
+cleanup() {
+  printf "%bCleaning up...%b\n" "${YELLOW}" "${NORMAL}"
+  umount -R /mnt
+  if [[ ${isEncrypted} ]]; then
+    cryptsetup close "${luksName}"
+  fi
+}
+trap cleanup EXIT
+
+#====================#
+#  HELPER FUNCTIONS  #
+#====================#
+
+# Prompts the user if they agree to the question
+ask_yn() {
+  local prompt="$1"
+
+  printf "%b%s%b\n" "${CYAN}" "${prompt}" "${NORMAL}"
+
+  PS3='Please choose: '
+  select answer in "YES" "NO" "ABORT"; do
+    case "${answer}" in
+    "YES") return 0 ;;
+    "NO") return 1 ;;
+    "ABORT") exit 1 ;;
+    *) printf "%bNot a valid input.%b\n" "${YELLOW}" "${NORMAL}" ;;
+    esac
+  done
+  PS3=''
+}
+
+# Runs commands in a more verbose way and handles errors better
+run_command() {
+  local commandString
+  commandString="$(echo -e -n "$@")"
+
+  printf "%b%s%b is running...\n%b" "${PINK}" "${commandString}" "${NORMAL}${CYAN}" "${NORMAL}"
+  if ! "$@"; then
+    printf "%bERROR: %s%b\n" "${RED}" "$*" "${NORMAL}"
+    return 1
+  fi
+}
+
+# Checks if the system is connected to the internet
+isOnline() {
+  if ping -c 2 8.8.8.8 &>/dev/null; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+#==================#
+#  MAIN FUNCTIONS  #
+#==================#
+
+# Check if the user is the superuser
+check_if_root() {
+  clear
+  if ! [[ ${USER_ID} -eq 0 ]]; then
+    printf "%bElevating permissions...%b\n" "${YELLOW}" "${NORMAL}"
+    sudo "${0}"
+  fi
+}
+
+# Check if firmware interface is uefi
+check_if_uefi() {
+  clear
+  if ! [[ -d "${EFIVARDIR}" ]]; then
+    printf "%bMake sure that your on a uefi system!%b\n" "${YELLOW}" "${NORMAL}"
+    exit 1
+  fi
+}
+
+# Shows the user a list of available keyboard layouts and prompts the user to select one
+select_keyboard_layout() {
+  local selectedLayout
+  clear
+
+  while true; do
+    find /usr/share/kbd/keymaps/ -type f -iname "*.map.gz" -printf "${BLUE}%f\0${NORMAL}\n" | sed -e 's/\..*$//' | sort | less --RAW-CONTROL-CHARS --no-init
+    printf "%bPlease select a keyboard layout: %b" "${CYAN}" "${NORMAL}"
+    read -r selectedLayout
+
+    if run_command loadkeys "${selectedLayout}" &>/dev/null; then
+      selectedKeyboardLayout="${selectedLayout}"
+      break
+    fi
+
+    printf "%bNot a valid layout.%b\n" "${YELLOW}" "${NORMAL}"
+    sleep 1
+    clear
+  done
+}
+
+# Let the user setup an internet connection
+connect_internet() {
+  local wifiSsid wifiPassphrase wifiInterface
+  mapfile -t interfaces < <(ip --color=auto -br link show | awk '{print $1}')
+  clear
+
+  if isOnline; then
+    printf "%bAlready connected to the internet.%b\n" "${GREEN}" "${NORMAL}"
+    sleep 1
+    return 0
+  fi
+
+  PS3='Select a network interface: '
+  while true; do
+    clear
+    select opt in "${interfaces[@]}"; do
+      if [[ -z "${opt}" ]]; then
+        printf "%bNot a valid input.%b\n" "${YELLOW}" "${NORMAL}"
+        sleep 1
+        break
+      elif [[ -d "/sys/class/net/${opt}/" ]]; then
+        wifiInterface="${opt}"
+        printf "%bUsing the %b%s%b interface.%b\n" "${CYAN}" "${NORMAL}${PINK}" "${wifiInterface}" "${NORMAL}${CYAN}" "${NORMAL}"
+        sleep 1
+        break 2
+      fi
+    done
+  done
+  PS3=''
+
+  while true; do
+    clear
+    printf "%bEnter your wifi ssid: %b" "${CYAN}" "${NORMAL}"
+    read -r wifiSsid
+
+    if ask_yn "Is this the wifi you want to use (${wifiSsid})"; then
+      break
+    fi
+  done
+
+  if NetworkManager -V &>/dev/null; then
+    return 0
+  elif wpa_supplicant -v &>/dev/null; then
+    cp /etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant-"${wifiInterface}".conf
+    printf "%bEnter the passphrase for your wifi: %b" "${CYAN}" "${NORMAL}"
+    read -r wifiPassphrase
+
+    wpa_passphrase "${wifiSsid}" "${wifiPassphrase}" >>/etc/wpa_supplicant/wpa_supplicant-"${wifiInterface}".conf
+    run_command wpa_supplicant -B -i "${wifiInterface}" -c /etc/wpa_supplicant/wpa_supplicant-"${wifiInterface}".conf
+  fi
+
+  if isOnline; then
+    printf "%bConnection to the internet succesfull.%b\n" "${GREEN}" "${NORMAL}"
+    sleep 1
+    return 0
+  fi
+  connect_internet
+}
+
+# Shows the user all available disks and prompts the user to choose one
+# Also checks if the selected disk supports trimming
+select_disk() {
+  mapfile -t disks < <(lsblk -d --noheading -o NAME)
+  clear
+
+  PS3='Select disk: '
+  select opt in "${disks[@]}"; do
+    if [[ -n "${opt}" ]]; then
+      clear
+      printf "%bTHE SELECTED DISK (/dev/${opt}) WILL BE COMPLETLY WIPED.\n ALL DATA WILL BE LOST.%b\n" "${YELLOW}" "${NORMAL}"
+      if ! ask_yn "Do you want to continue"; then
+        select_disk
+      fi
+      selectedDisk="/dev/${opt}"
+      break
+    fi
+    printf "%bNot a valid input.%b\n" "${YELLOW}" "${NORMAL}"
+    clear
+  done
+  PS3=''
+
+  if [[ "$(lsblk -d -D --noheading -o DISC-MAX "${selectedDisk}")" == "0B" ]]; then
+    isSsd=false
+  else
+    isSsd=true
+  fi
+}
+
+# Formats the selected disk using the recommended partition table
+# 512M: EFI partition
+# 1G: BOOT partition
+# REST: ROOT partition
+format_disk() {
+  run_command wipefs -af "${selectedDisk}"
+  sleep 0.5
+  clear
+
+  printf "%bThe disk will be formated using the following table (512M EFI; 1G BOOT; rest ROOT)%b\n" "${CYAN}" "${NORMAL}"
+  if ! ask_yn "Do you agree with that"; then
+    printf "%bPlease continue with a manual install then.%b\n" "${YELLOW}" "${NORMAL}"
+    sleep 1
+    exit 1
+  fi
+
+  printf "g\nn\n1\n\n+512M\nt\n1\nn\n2\n\n+1G\nt\n2\n20\nn\n3\n\n\nt\n3\n20\nw\n" | fdisk "${selectedDisk}" &>/dev/null
+  # printf "g\nn\n1\n\n+1G\nt\n1\nn\n2\n\n\nt\n2\n20\nw\n" | fdisk "${selectedDisk}" &>/dev/null
+
+  efiPartition="$(lsblk -ln -p -o NAME,TYPE "${selectedDisk}" | grep 'part' | awk 'NR==1 {print $1}')"
+  bootPartition="$(lsblk -ln -p -o NAME,TYPE "${selectedDisk}" | grep 'part' | awk 'NR==2 {print $1}')"
+  rootPartition="$(lsblk -ln -p -o NAME,TYPE "${selectedDisk}" | grep 'part' | awk 'NR==3 {print $1}')"
+}
+
+# Prompts the user if they want to encrypt their root partition
+# and encrypt it if the user agrees
+encrypt_disk() {
+  clear
+  if ! ask_yn "Do you want to encrypt your disk"; then
+    isEncrypted=false
+    return 0
+  fi
+
+  luksPartition="${rootPartition}"
+  rootPartition=""
+  isEncrypted=true
+
+  while true; do
+    clear
+    if ! run_command cryptsetup luksFormat --type luks1 "${luksPartition}"; then
+      continue
+    fi
+
+    printf "%bSuccesfully encrypted %b%s%b\n" "${GREEN}" "${NORMAL}${PINK}" "${luksPartition}" "${NORMAL}"
+    break
+  done
+
+  while true; do
+    clear
+    printf "%bEnter a name for the encrypted partition: %b" "${CYAN}" "${NORMAL}"
+    read -r luksName
+
+    if ! run_command cryptsetup luksOpen "${luksPartition}" "${luksName}"; then
+      continue
+    fi
+
+    printf "%bSuccesfully opend encrypted partition %b%s%b with the name %b%s%b\n" "${GREEN}" "${NORMAL}${PINK}" "${luksPartition}" "${NORMAL}${CYAN}" "${NORMAL}${PINK}" "${luksName}" "${NORMAL}"
+    rootPartition="/dev/mapper/${luksName}"
+    break
+  done
+}
+
+# creates the btrfs filesystem
+create_filesystem() {
+  clear
+  mkfs.vfat -n "EFI" -F 32 "${efiPartition}"
+  mkfs.ext4 -L "BOOT" "${bootPartition}"
+  mkfs.btrfs -L "ROOT" "${rootPartition}"
+}
+
+# Mounts the newly created filesystem and creates the btrfs subvolumes
+mount_filesystem() {
+  clear
+  if [[ "${isSsd}" ]]; then
+    export BTRFS_OPTS=rw,noatime,discard=async,compress-force=zstd,space_cache=v2,commit=120
+  else
+    export BTRFS_OPTS=rw,noatime,compress-force=zstd,space_cache=v2,commit=120
+  fi
+
+  mount -o "${BTRFS_OPTS}" "${rootPartition}" /mnt
+  btrfs subvolume create /mnt/@
+  btrfs subvolume create /mnt/@home
+  btrfs subvolume create /mnt/@snapshots
+  btrfs subvolume create /mnt/@swap
+  umount /mnt
+  mount -o "${BTRFS_OPTS}",subvol=@ "${rootPartition}" /mnt
+  mkdir -p /mnt/home
+  mount -o "${BTRFS_OPTS}",subvol=@home "${rootPartition}" /mnt/home
+  mkdir -p /mnt/.snapshots
+  mount -o "${BTRFS_OPTS}",subvol=@snapshots "${rootPartition}" /mnt/.snapshots
+  mkdir -p /mnt/swap
+  mount -o "${BTRFS_OPTS}",subvol=@swap "${rootPartition}" /mnt/swap
+  mkdir -p /mnt/var/cache
+  btrfs subvolume create /mnt/var/cache/xbps
+  btrfs subvolume create /mnt/var/tmp
+  btrfs subvolume create /mnt/var/log
+  mkdir -p /mnt/boot
+  mount -o rw,noatime "${bootPartition}" /mnt/boot
+  mkdir -p /mnt/boot/efi
+  mount -o rw,noatime "${efiPartition}" /mnt/boot/efi
+}
+
+# Copys the xbps-keys over the the chroot environment and install the Void Linux base-system
+# Prompts the user if they want to enable the nonfree, multilib and multilib-nonfree repositorys
+install_base_system() {
+  clear
+  mkdir -p /mnt/var/db/xbps/keys
+  cp /var/db/xbps/keys/* /mnt/var/db/xbps/keys
+
+  if ! ask_yn "About to install packages. Did you verify them"; then
+    printf "%bPlease verify scripts before executing them carelessly!%b\n" "${RED}" "${NORMAL}"
+    exit 1
+  fi
+
+  if ! XBPS_ARCH="${ARCH}" run_command xbps-install -Suvy -r /mnt -R "${REPO}" "${BASE_PACKAGES[@]}"; then
+    printf "%bSomething went wrong, exiting script...%b\n" "${RED}" "${NORMAL}"
+    exit 1
+  fi
+
+  clear
+
+  if [[ "${ARCH}" == "x86_64" ]]; then
+    if ask_yn "Do you want to enable the nonfree, multilib and multilib-nonfree repositorys"; then
+      if ! XBPS_ARCH="${ARCH}" run_command xbps-install -Suvy -r /mnt -R "${REPO}" void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree; then
+        printf "%bSomething went wrong, exiting script...%b\n" "${RED}" "${NORMAL}"
+        exit 1
+      fi
+
+      if grep -m 1 "model name" /proc/cpuinfo | grep --ignore-case "intel" &>/dev/null; then
+        if ! XBPS_ARCH="${ARCH}" run_command XBPS_ARCH="${ARCH}" xbps-install -Suvy -r /mnt -R "${REPO}" intel-ucode; then
+          printf "%bSomething went wrong, exiting script...%b\n" "${RED}" "${NORMAL}"
+          exit 1
+        fi
+      fi
+    fi
+  fi
+}
+
+# Mounts a pseudo filesystem and copys the resolv config over to the chroot environment
+# Also downloads the chroot script located in this repositorys and execute it inside the chroot environment
+enter_chroot() {
+  clear
+
+  mount --rbind /dev /mnt/dev
+  mount --make-rslave /mnt/dev
+  mount --rbind /proc /mnt/proc
+  mount --make-rslave /mnt/proc
+  mount --rbind /sys /mnt/sys
+  mount --make-rslave /mnt/sys
+  mount --rbind /run /mnt/run
+  mount --make-rslave /mnt/run
+
+  cp /etc/resolv.conf /mnt/etc/
+
+  curl -o /mnt/root/chroot --fail https://codeberg.org/AculBoy/VoidLinuxInstaller/raw/branch/main/chroot
+  chmod +x /mnt/root/chroot
+
+  BTRFS_OPTS="${BTRFS_OPTS}" selectedKeyboardLayout="${selectedKeyboardLayout}" selectedDisk="${selectedDisk}" \
+    isSsd="${isSsd}" efiPartition="${efiPartition}" bootPartition="${bootPartition}" rootPartition="${rootPartition}" \
+    isEncrypted="${isEncrypted}" luksPartition="${luksPartition}" luksName="${luksName}" ARCH="${ARCH}" REPO="${REPO}" \
+    PS1='( chroot ) # ' chroot /mnt/ /bin/bash "${HOME}"/chroot
+}
+
+# Applys the finishing touches and reboots the system
+finish_installation() {
+  clear
+
+  if ask_yn "It is recommended to reboot your system.\nDo you want to reboot"; then
+    reboot
+  fi
+}
+
+# Main function that will start the installation process
+main() {
+  check_if_root
+  check_if_uefi
+  select_keyboard_layout
+  connect_internet
+  select_disk
+  format_disk
+  encrypt_disk
+  create_filesystem
+  mount_filesystem
+  install_base_system
+  enter_chroot
+  finish_installation
+}
+
+main
