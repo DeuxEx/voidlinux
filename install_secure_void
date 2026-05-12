@@ -7,6 +7,9 @@
 ## date: 2026-03-07
 ## updated: 2026-03-08
 
+## download link in bash raw
+## xbps-fetch https://raw.githubusercontent.com/deuxex/voidlinux/refs/heads/main/install_secure_void
+
 ## https://codeberg.org/AculBoy/VoidLinuxInstaller
 ## This Void Linux installation script aims to streamline the installation process with optional 
 ## disk encryption (with an unencrypted boot). It offers a functioning, minimalistic installation
