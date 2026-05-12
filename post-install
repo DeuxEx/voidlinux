@@ -58,6 +58,9 @@ PACKAGES=(
 	virt-manager
 	virt-manager-tools
 	qemu
+    mc
+    nano
+    vsv
 )
 
 PACKAGES_INTEL=(
