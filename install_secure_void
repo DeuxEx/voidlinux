@@ -81,15 +81,16 @@ BASE_PACKAGES=(
   apparmor
   git
   wget
-  curl
+  cur
   rsync
   tar
   unzip
   zip
   xmirror
   NetworkManager
-  neovim
-  vim
+  nano
+  mc
+  vsv
 )
 
 #===========#
