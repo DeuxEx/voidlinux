@@ -132,7 +132,7 @@ ask_yn() {
 
 
 
-deux_init() {
+#deux_init() {
   ## 1) boot using usb void live
   #keyboard layout
   #ls /usr/share/kbd/keymaps/i386/qwerty/se*
@@ -152,8 +152,8 @@ deux_init() {
   ## After the script successfully downloads, you need to make it executable via:
   ## chmod +x $HOME/install
   ## And then execute it
-  printf "testfunc"
-}
+  #printf "testfunc"
+#}
 
 
 
