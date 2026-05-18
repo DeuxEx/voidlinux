@@ -489,9 +489,7 @@ enter_chroot() {
   cp /etc/resolv.conf /mnt/etc/
 
   #curl -o /mnt/root/chroot --fail https://codeberg.org/AculBoy/VoidLinuxInstaller/raw/branch/main/chroot
-
-  xbps-fetch https://raw.githubusercontent.com/DeuxEx/voidlinux/refs/heads/main/chroot >> /mnt/root/chroot
-  #cp chroot /mnt/root/chroot
+  xbps-fetch -v -o /mnt/root/chroot https://raw.githubusercontent.com/DeuxEx/voidlinux/refs/heads/main/chroot
 
   chmod +x /mnt/root/chroot
 
