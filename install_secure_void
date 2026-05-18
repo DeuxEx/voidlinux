@@ -135,6 +135,8 @@ ask_yn() {
   PS3=''
 }
 
+
+
 # Runs commands in a more verbose way and handles errors better
 run_command() {
   local commandString
@@ -146,6 +148,8 @@ run_command() {
     return 1
   fi
 }
+
+
 
 # Checks if the system is connected to the internet
 isOnline() {
@@ -160,6 +164,8 @@ isOnline() {
 #  MAIN FUNCTIONS  #
 #==================#
 
+
+
 # Check if the user is the superuser
 check_if_root() {
   clear
@@ -169,6 +175,8 @@ check_if_root() {
   fi
 }
 
+
+
 # Check if firmware interface is uefi
 check_if_uefi() {
   clear
@@ -177,6 +185,8 @@ check_if_uefi() {
     exit 1
   fi
 }
+
+
 
 # Shows the user a list of available keyboard layouts and prompts the user to select one
 select_keyboard_layout() {
@@ -198,6 +208,8 @@ select_keyboard_layout() {
     clear
   done
 }
+
+
 
 # Let the user setup an internet connection
 connect_internet() {
@@ -258,6 +270,8 @@ connect_internet() {
   connect_internet
 }
 
+
+
 # Shows the user all available disks and prompts the user to choose one
 # Also checks if the selected disk supports trimming
 select_disk() {
@@ -287,6 +301,8 @@ select_disk() {
   fi
 }
 
+
+
 # Formats the selected disk using the recommended partition table
 # 512M: EFI partition
 # 1G: BOOT partition
@@ -310,6 +326,8 @@ format_disk() {
   bootPartition="$(lsblk -ln -p -o NAME,TYPE "${selectedDisk}" | grep 'part' | awk 'NR==2 {print $1}')"
   rootPartition="$(lsblk -ln -p -o NAME,TYPE "${selectedDisk}" | grep 'part' | awk 'NR==3 {print $1}')"
 }
+
+
 
 # Prompts the user if they want to encrypt their root partition
 # and encrypt it if the user agrees
@@ -349,6 +367,8 @@ encrypt_disk() {
   done
 }
 
+
+
 # creates the btrfs filesystem
 create_filesystem() {
   clear
@@ -356,6 +376,8 @@ create_filesystem() {
   mkfs.ext4 -L "BOOT" "${bootPartition}"
   mkfs.btrfs -L "ROOT" "${rootPartition}"
 }
+
+
 
 # Mounts the newly created filesystem and creates the btrfs subvolumes
 mount_filesystem() {
@@ -388,6 +410,8 @@ mount_filesystem() {
   mkdir -p /mnt/boot/efi
   mount -o rw,noatime "${efiPartition}" /mnt/boot/efi
 }
+
+
 
 # Copys the xbps-keys over the the chroot environment and install the Void Linux base-system
 # Prompts the user if they want to enable the nonfree, multilib and multilib-nonfree repositorys
@@ -426,6 +450,8 @@ install_base_system() {
   fi
 }
 
+
+
 # Mounts a pseudo filesystem and copys the resolv config over to the chroot environment
 # Also downloads the chroot script located in this repositorys and execute it inside the chroot environment
 enter_chroot() {
@@ -455,6 +481,8 @@ enter_chroot() {
     PS1='( chroot ) # ' chroot /mnt/ /bin/bash "${HOME}"/chroot
 }
 
+
+
 # Applys the finishing touches and reboots the system
 finish_installation() {
   clear
@@ -463,6 +491,8 @@ finish_installation() {
     reboot
   fi
 }
+
+
 
 # Main function that will start the installation process
 main() {
@@ -480,6 +510,5 @@ main() {
   finish_installation
 }
 
-#main
-mount_filesystem
-enter_chroot
+
+main
