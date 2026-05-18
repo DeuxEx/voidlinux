@@ -15,6 +15,7 @@
 ## disk encryption (with an unencrypted boot). It offers a functioning, minimalistic installation
 ## with the btrfs filesystem, grub bootloader, optional swap (zswap), and optional LUKS1 disk encryption.
 
+
 ## After the script successfully downloads, you need to make it executable via:
 ## chmod +x $HOME/install
 ## And then execute it:
