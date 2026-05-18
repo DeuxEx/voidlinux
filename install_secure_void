@@ -23,7 +23,8 @@ shopt -s extglob  # Enable whitespace trimming
 #  VARIABLES  #
 #=============#
 
-selectedKeyboardLayout=""
+#selectedKeyboardLayout=""
+selectedKeyboardLayout="se-latin1"
 selectedDisk=""
 isSsd=false
 efiPartition=""
@@ -529,4 +530,5 @@ main() {
 }
 
 
-main
+#main
+enter_chroot
