@@ -416,7 +416,8 @@ install_base_system() {
       fi
 
       if grep -m 1 "model name" /proc/cpuinfo | grep --ignore-case "intel" &>/dev/null; then
-        if ! XBPS_ARCH="${ARCH}" run_command XBPS_ARCH="${ARCH}" xbps-install -Suvy -r /mnt -R "${REPO}" intel-ucode; then
+        #if ! XBPS_ARCH="${ARCH}" run_command XBPS_ARCH="${ARCH}" xbps-install -Suvy -r /mnt -R "${REPO}" intel-ucode; then
+         if ! XBPS_ARCH="${ARCH}" run_command xbps-install -Suvy -r /mnt -R "${REPO}" intel-ucode; then
           printf "%bSomething went wrong, exiting script...%b\n" "${RED}" "${NORMAL}"
           exit 1
         fi
