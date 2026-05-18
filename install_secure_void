@@ -529,5 +529,5 @@ main() {
 }
 
 
-#main
-enter_chroot
+main
+
