@@ -152,6 +152,7 @@ deux_init() {
   ## After the script successfully downloads, you need to make it executable via:
   ## chmod +x $HOME/install
   ## And then execute it
+  printf "testfunc"
 }
 
 
