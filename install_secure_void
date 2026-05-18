@@ -49,7 +49,6 @@ EFIVARDIR="/sys/firmware/efi/efivars"
 
 REPO="https://ftp.lysator.liu.se/pub/voidlinux/current" 
 
-# Change to a faster mirror for your location
 
 
 ARCH="x86_64"
