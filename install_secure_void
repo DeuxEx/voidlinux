@@ -457,8 +457,8 @@ finish_installation() {
 main() {
   check_if_root
   check_if_uefi
-  select_keyboard_layout
-  connect_internet
+  #select_keyboard_layout
+  #connect_internet
   select_disk
   format_disk
   encrypt_disk
