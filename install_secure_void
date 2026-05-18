@@ -2,23 +2,17 @@
 # This script is licensed under the MIT License.
 # Copyright (c) 2026 Luca Gödde
 ## author: Gödde, Luca
+##modified: Pär, Wennergrund
+
 ## project: Void Linux Install script
 ## desc: An attempt to automate the install process of Void Linux (live environment)
 ## date: 2026-03-07
-## updated: 2026-03-08
-
-## download link in bash raw
-## xbps-fetch https://raw.githubusercontent.com/deuxex/voidlinux/refs/heads/main/install_secure_void
+## updated: 2026-05-18
 
 ## https://codeberg.org/AculBoy/VoidLinuxInstaller
 ## This Void Linux installation script aims to streamline the installation process with optional 
 ## disk encryption (with an unencrypted boot). It offers a functioning, minimalistic installation
 ## with the btrfs filesystem, grub bootloader, optional swap (zswap), and optional LUKS1 disk encryption.
-
-
-## After the script successfully downloads, you need to make it executable via:
-## chmod +x $HOME/install
-## And then execute it:
 
 
 
@@ -133,6 +127,30 @@ ask_yn() {
     esac
   done
   PS3=''
+}
+
+
+
+deux_init() {
+  ## 1) boot using usb void live
+  #keyboard layout
+  #ls /usr/share/kbd/keymaps/i386/qwerty/se*
+  #loadkeys se-latin1
+  #wifi
+  #ls /sys/class/net
+  #wlp0s20f3
+  #cp /etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant-test.conf
+  #wpa_passphrase XiamoiPro 12345678 >> /etc/wpa_supplicant/wpa_supplicant-test.conf
+  #sv stop wpa_supplicant
+  #wpa_supplicant -B -i wlp0s20f3 -c /etc/wpa_supplicant/wpa_supplicant-test.conf
+  #sv start wpa_supplicant
+  
+  ## download link in bash raw
+  ## xbps-fetch https://raw.githubusercontent.com/deuxex/voidlinux/refs/heads/main/install_secure_void
+  
+  ## After the script successfully downloads, you need to make it executable via:
+  ## chmod +x $HOME/install
+  ## And then execute it
 }
 
 
