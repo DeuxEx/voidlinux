@@ -47,7 +47,7 @@ USER_ID="$(id -u)"
 EFIVARDIR="/sys/firmware/efi/efivars"
 #REPO="https://repo-de.voidlinux.org/current"
 
-REPO="https://ftp.lysator.liu.se/pub/voidlinux" 
+REPO="https://ftp.lysator.liu.se/pub/voidlinux/current" 
 
 # Change to a faster mirror for your location
 
