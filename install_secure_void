@@ -82,7 +82,7 @@ BASE_PACKAGES=(
   apparmor
   git
   wget
-  cur
+  curl
   rsync
   tar
   unzip
