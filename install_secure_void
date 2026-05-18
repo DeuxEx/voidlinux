@@ -87,7 +87,7 @@ BASE_PACKAGES=(
   apparmor
   git
   wget
-  curl
+  #curl (use xbps-fetch instead)
   rsync
   tar
   unzip
