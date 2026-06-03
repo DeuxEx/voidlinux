@@ -84,8 +84,8 @@ if using cinnamon (which I do) ive backed up my settings here:
 
 #create tarball with my nano-settings
 #tar -czvf nano-settings.tar /etc/nanorc /root/.nano/
-#untar
-tar -xvf nano-settings.tar
+# un-tar to root
+tar -xvf nano-settings.tar -C /
 
   _    _ ________          __
  | |  | |  ____\ \        / /
