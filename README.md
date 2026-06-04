@@ -15,9 +15,9 @@ musl is for thinner single processing computers without need of GPU and other re
 glibc base<br>
 https://repo-default.voidlinux.org/live/current/void-live-x86_64-20250202-base.iso<br>
 glibc with xfce<br>
-#https://repo-default.voidlinux.org/live/current/void-live-x86_64-20250202-xfce.iso<br>
+https://repo-default.voidlinux.org/live/current/void-live-x86_64-20250202-xfce.iso<br>
 musl with xfce<br>
-#https://repo-default.voidlinux.org/live/current/void-live-x86_64-musl-20250202-xfce.iso<p>
+https://repo-default.voidlinux.org/live/current/void-live-x86_64-musl-20250202-xfce.iso<p>
 
 xbps-install git<br>
 git clone https://github.com/DeuxEx/voidlinux<p>
