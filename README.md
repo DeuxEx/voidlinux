@@ -1,4 +1,4 @@
-
+#!/bin/sh
 
 <a href="https://example.com">Link text</a>
 <img src="void_button.gif" alt="Description">
