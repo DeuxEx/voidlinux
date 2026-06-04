@@ -1,107 +1,61 @@
-#!/bin/sh
-
 <a href="https://example.com">Link text</a>
 <img src="void_button.gif" alt="Description">
 
+<h1>VOID LINUX</h1>
 
- __      ______ _____ _____    _      _____ _   _ _    ___   __
- \ \    / / __ \_   _|  __ \  | |    |_   _| \ | | |  | \ \ / /
-  \ \  / / |  | || | | |  | | | |      | | |  \| | |  | |\ V / 
-   \ \/ /| |  | || | | |  | | | |      | | | . ` | |  | | > <  
-    \  / | |__| || |_| |__| | | |____ _| |_| |\  | |__| |/ . \ 
-     \/   \____/_____|_____/  |______|_____|_| \_|\____//_/ \_\
-                                                               
-#This is just some notes,configs and reminders for myself on how I install my Void Linux environment.
+This is just some notes, configs and reminders for myself on how I install my Void Linux environment.
 
+First install the computer with an ISO from void: https://voidlinux.org/download/
 
-#First install the computer with a iso from void.
+I use glibc base (no window manager)
+musl is for thinner single processing computers without need of GPU and other repositories than the default in xbps.
 
-#https://voidlinux.org/download/
+<h2>VARIANTS</h2>
 
-#I use glibc base (no window manager)
-#musl is for thinner single processing computers without need of GPU and other repositories than the default in xbps.
-
- __      __     _____  _____          _   _ _______ _____ 
- \ \    / /\   |  __ \|_   _|   /\   | \ | |__   __/ ____|
-  \ \  / /  \  | |__) | | |    /  \  |  \| |  | | | (___  
-   \ \/ / /\ \ |  _  /  | |   / /\ \ | . ` |  | |  \___ \ 
-    \  / ____ \| | \ \ _| |_ / ____ \| |\  |  | |  ____) |
-     \/_/    \_\_|  \_\_____/_/    \_\_| \_|  |_| |_____/ 
-                                                          
 #glibc base
 https://repo-default.voidlinux.org/live/current/void-live-x86_64-20250202-base.iso
 #glibc with xfce
 #https://repo-default.voidlinux.org/live/current/void-live-x86_64-20250202-xfce.iso
-#musl withc xfce
+#musl with xfce
 #https://repo-default.voidlinux.org/live/current/void-live-x86_64-musl-20250202-xfce.iso
-
 
 xbps-install git
 git clone https://github.com/DeuxEx/voidlinux
 
-
-#run the voidlinux/install.sh to install some good applications and routines, like htop, telnet, mc etc
+Run the voidlinux/after_install.sh to install some good applications and routines, like htop, telnet, mc etc:
 bash voidlinux/after_install.sh g
 
-  ______ _            _______ _____        _  __
- |  ____| |        /\|__   __|  __ \ /\   | |/ /
- | |__  | |       /  \  | |  | |__) /  \  | ' / 
- |  __| | |      / /\ \ | |  |  ___/ /\ \ |  <  
- | |    | |____ / ____ \| |  | |  / ____ \| . \ 
- |_|    |______/_/    \_\_|  |_| /_/    \_\_|\_\
-                                                                    
-#Enable flatpak repository
+<h2>FLATPAK</h2>
+
+Enable flatpak repository:
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 #flatpak install rustdesk
 #flatpak install opera
 
- __   ________ _____ ______ 
- \ \ / /  ____/ ____|  ____|
-  \ V /| |__ | |    | |__   
-   > < |  __|| |    |  __|  
-  / . \| |   | |____| |____ 
- /_/ \_\_|    \_____|______|
-                                                               
-#If using xfce Ive configured the activity-bar and made a zip of it
+<h2>XFCE</h2>
+
+If using xfce I've configured the activity-bar and made a zip of it:
 #unzip -o voidlinux/xfce_settings_rev2.zip
 #how i created the zip, -r = recurse
-#zip -r xfce_settings_rev2.zip .config/xfce4/xfconf/xfce-perchannel-xml/* ~/.config/xfce4/ ~/.bashrc ~/.bash_profile /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml /etc/skel/.bashrc /etc/skel/.bash_profile ~/.inputrc /home/void/.config/xfce4/panel/launcher-*
+#zip -r xfce_settings_rev2.zip .config/xfce4/xfconf/xfce-perchannel-xml/* ~/.config/xfce4/ ~/.bashrc ~/.bash_profile /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml /etc/xdg/xfc[...]
 
-   _____ _____ _   _ _   _          __  __  ____  _   _ 
-  / ____|_   _| \ | | \ | |   /\   |  \/  |/ __ \| \ | |
- | |      | | |  \| |  \| |  /  \  | \  / | |  | |  \| |
- | |      | | | . ` | . ` | / /\ \ | |\/| | |  | | . ` |
- | |____ _| |_| |\  | |\  |/ ____ \| |  | | |__| | |\  |
-  \_____|_____|_| \_|_| \_/_/    \_\_|  |_|\____/|_| \_|
-                                            
-if using cinnamon (which I do) ive backed up my settings here:
+<h2>CINNAMON</h2>
+
+If using cinnamon (which I do) I've backed up my settings here:
 #tar -czvf cinnamon_config_backup.tar.gz ~/.cinnamon ~/.local/share/cinnamon ~/.config/cinnamon /home/void/.local/share/cinnamon/
 #untar -xvf cinnamon_config_backup.tar.gz
 
-  _   _          _   _  ____  
- | \ | |   /\   | \ | |/ __ \ 
- |  \| |  /  \  |  \| | |  | |
- | . ` | / /\ \ | . ` | |  | |
- | |\  |/ ____ \| |\  | |__| |
- |_| \_/_/    \_\_| \_|\____/ 
+<h2>NANO</h2>
 
-#create tarball with my nano-settings
+Create tarball with my nano-settings:
 #tar -czvf nano-settings.tar /etc/nanorc /root/.nano/
 # un-tar to root
 tar -xvf nano-settings.tar -C /
 
-  _    _ ________          __
- | |  | |  ____\ \        / /
- | |  | | |__   \ \  /\  / / 
- | |  | |  __|   \ \/  \/ /  
- | |__| | |       \  /\  /   
-  \____/|_|        \/  \/    
-                             
-if using ufw (uncomplicated firewall) here are my backup up settings for my firewall:
+<h2>UFW</h2>
+
+If using ufw (uncomplicated firewall) here are my backed up settings for my firewall:
 #create tarball
 tar .czvf ufw-rules.tar /etc/ufw/
 #untar the tarball
 untar -xvf ufw-rules.tar
-
-
-
