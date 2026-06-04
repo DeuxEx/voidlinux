@@ -1,5 +1,5 @@
-<a href="https://example.com">Link text</a>
-<img src="void_button.gif" alt="Description">
+<a href="https://repo-default.voidlinux.org/">
+<img src="void_button.gif" alt="Description"></a>
 
 <h1>VOID LINUX</h1>
 
