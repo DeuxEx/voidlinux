@@ -20,7 +20,7 @@ musl with xfce<br>
 https://repo-default.voidlinux.org/live/current/void-live-x86_64-musl-20250202-xfce.iso<p>
 
 xbps-install git<br>
-git clone https://github.com/DeuxEx/voidlinux<p>
+<b>git clone https://github.com/DeuxEx/voidlinux</b><p>
 
 Run the voidlinux/after_install.sh to install some good applications and routines, like htop, telnet, mc etc:<br>
 bash voidlinux/after_install.sh g<p>
@@ -28,37 +28,37 @@ bash voidlinux/after_install.sh g<p>
 <h2>FLATPAK</h2>
 
 Enable flatpak repository:<br>
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo<br>
-#flatpak install rustdesk<br>
-#flatpak install opera<p>
+<b>flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo</b><br>
+<b>flatpak install rustdesk</b><br>
+<b>flatpak install opera</b><p>
 
 <h2>XFCE</h2>
 
 If using xfce I've configured the activity-bar and made a zip of it:<br>
-#unzip -o voidlinux/xfce_settings_rev2.zip<br>
-#how i created the zip, -r = recurse<br>
-#zip -r xfce_settings_rev2.zip .config/xfce4/xfconf/xfce-perchannel-xml/* ~/.config/xfce4/ ~/.bashrc ~/.bash_profile /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml /etc/xdg/xfc[...]<p>
+<b>unzip -o voidlinux/xfce_settings_rev2.zip</b><br>
+how i created the zip, -r = recurse<br>
+<b>zip -r xfce_settings_rev2.zip .config/xfce4/xfconf/xfce-perchannel-xml/* ~/.config/xfce4/ ~/.bashrc ~/.bash_profile /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml /etc/xdg/xfc[...]</b><p>
 
 <h2>CINNAMON</h2>
 
-If using cinnamon (which I do) I've backed up my settings here:<br>
-#tar -czvf cinnamon_config_backup.tar.gz ~/.cinnamon ~/.local/share/cinnamon ~/.config/cinnamon /home/void/.local/share/cinnamon/<br>
-#untar -xvf cinnamon_config_backup.tar.gz<p>
+If using cinnamon I've backed up my settings here:<br>
+<b>tar -czvf cinnamon_config_backup.tar.gz ~/.cinnamon ~/.local/share/cinnamon ~/.config/cinnamon /home/void/.local/share/cinnamon/</b><br>
+<b>untar -xvf cinnamon_config_backup.tar.gz</b><p>
 
 <h2>NANO</h2>
 
 Create tarball with my nano-settings:<br>
-#tar -czvf nano-settings.tar /etc/nanorc /root/.nano/<br>
-#un-tar to root<br>
-tar -xvf nano-settings.tar -C /<p>
+<b>tar -czvf nano-settings.tar /etc/nanorc /root/.nano/</b><br>
+un-tar to root<br>
+<b>tar -xvf nano-settings.tar -C /</b><p>
 
 <h2>UFW</h2>
 
 If using ufw (uncomplicated firewall) here are my backed up settings for my firewall:<br>
-#create tarball<br>
-tar .czvf ufw-rules.tar /etc/ufw/<br>
-#untar the tarball<br>
-untar -xvf ufw-rules.tar<p>
+create tarball<br>
+<b>tar .czvf ufw-rules.tar /etc/ufw/</b><br>
+extract the tarball<br>
+<b>untar -xvf ufw-rules.tar</b><p>
 
 
 
