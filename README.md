@@ -1,5 +1,8 @@
 #!/bin/sh
 
+<a href="https://example.com">Link text</a>
+<img src="void_button.gif" alt="Description">
+
 
  __      ______ _____ _____    _      _____ _   _ _    ___   __
  \ \    / / __ \_   _|  __ \  | |    |_   _| \ | | |  | \ \ / /
