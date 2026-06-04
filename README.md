@@ -13,14 +13,14 @@ musl is for thinner single processing computers without need of GPU and other re
 <h2>VARIANTS</h2>
 
 #glibc base
-https://repo-default.voidlinux.org/live/current/void-live-x86_64-20250202-base.iso
+https://repo-default.voidlinux.org/live/current/void-live-x86_64-20250202-base.iso<br>
 #glibc with xfce
-#https://repo-default.voidlinux.org/live/current/void-live-x86_64-20250202-xfce.iso
+#https://repo-default.voidlinux.org/live/current/void-live-x86_64-20250202-xfce.iso<br>
 #musl with xfce
-#https://repo-default.voidlinux.org/live/current/void-live-x86_64-musl-20250202-xfce.iso
+#https://repo-default.voidlinux.org/live/current/void-live-x86_64-musl-20250202-xfce.iso<p>
 
-xbps-install git
-git clone https://github.com/DeuxEx/voidlinux
+xbps-install git<b>
+git clone https://github.com/DeuxEx/voidlinux<p>
 
 Run the voidlinux/after_install.sh to install some good applications and routines, like htop, telnet, mc etc:
 bash voidlinux/after_install.sh g
