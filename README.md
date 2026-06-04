@@ -12,11 +12,11 @@ musl is for thinner single processing computers without need of GPU and other re
 
 <h2>VARIANTS</h2>
 
-#glibc base
+glibc base<br>
 https://repo-default.voidlinux.org/live/current/void-live-x86_64-20250202-base.iso<br>
-#glibc with xfce
+glibc with xfce<br>
 #https://repo-default.voidlinux.org/live/current/void-live-x86_64-20250202-xfce.iso<br>
-#musl with xfce
+musl with xfce<br>
 #https://repo-default.voidlinux.org/live/current/void-live-x86_64-musl-20250202-xfce.iso<p>
 
 xbps-install git<br>
