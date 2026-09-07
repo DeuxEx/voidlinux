@@ -53,7 +53,6 @@ un-tar to root<br>
 <b>tar -xvf nano-settings.tar -C /</b><p>
 
 <h2>UFW</h2>
-
 If using ufw (uncomplicated firewall) here are my backed up settings for my firewall:<br>
 create tarball<br>
 <b>tar .czvf ufw-rules.tar /etc/ufw/</b><br>
@@ -61,6 +60,7 @@ extract the tarball<br>
 <b>untar -xvf ufw-rules.tar</b><p>
 
 <h2>HELIX</h2>
+Setup Helix with Rust support like this:
 xbps-install helix<br>
 create this file: ~/.config/helix/config.toml
 https://github.com/DeuxEx/voidlinux/blob/main/helix_config.toml
