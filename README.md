@@ -60,6 +60,8 @@ create tarball<br>
 extract the tarball<br>
 <b>untar -xvf ufw-rules.tar</b><p>
 
+<h2>HELIX</h2>
+xbps-install helix<br>
 
 
 
