@@ -1,0 +1,30 @@
+cat ~/.config/helix/languages.toml
+
+[[language]]
+name = "rust"
+scope = "source.rust"
+injection-regex = "rust"
+file-types = ["rs"]
+roots = ["Cargo.toml", "Cargo.lock"]
+auto-format = true
+formatter = { command = "rustfmt" }
+
+[language-server.rust-analyzer]
+command = "rust-analyzer"
+
+[language-server.rust-analyzer.config]
+# Use clippy instead of standard cargo check on save
+check = { command = "clippy", extraArgs = ["--", "-W", "clippy::pedantic"] }
+
+# Cargo features and build setup
+cargo = { allFeatures = true, buildScripts = { enable = true } }
+
+# Diagnostics & proc-macros
+procMacro = { enable = true }
+diagnostics = { enable = true, disabled = ["unresolved-proc-macro"] }
+
+# Inlay hints configuration (type info, implicit drops, chaining)
+inlayHints = { bindingModeHints = { enable = true }, chainingHints = { enable = true }, closingBraceHints = { minLines = 25 }, parameterHints = { enable = true }, typeHints = { enable = true } }
+
+# Auto-import completions
+imports = { granularity = { group = "module" }, prefix = "self" }
