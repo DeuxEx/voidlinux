@@ -1,5 +1,3 @@
-cat ~/.config/helix/languages.toml
-
 [[language]]
 name = "rust"
 scope = "source.rust"
