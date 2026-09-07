@@ -1,0 +1,63 @@
+cat ~/.config/helix/config.toml
+
+theme = "catppuccin_mocha"
+
+[editor]
+line-number = "relative"
+cursorline = true
+mouse = true
+scrolloff = 8
+completion-trigger-len = 1
+auto-completion = true
+auto-format = true
+bufferline = "multiple"
+color-modes = true
+auto-info = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "file-modification-indicator"]
+center = ["diagnostics"]
+right = ["selections", "position", "file-encoding", "file-type", "version-control"]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
+[editor.indent-guides]
+render = true
+character = "│"
+
+[editor.soft-wrap]
+enable = true
+
+# Keybindings for IDE workflow
+[keys.normal]
+# Quick file explorer / tree (press Space + e)
+#"space.e" = ":file-picker"
+#"space.b" = ":buffer-picker"
+
+# Quick code actions and diagnostics
+#"space.a" = "code_action"
+#"space.r" = "rename_symbol"
+#"space.d" = "goto_diagnostics"
+
+# Buffer navigation (Tab / Shift+Tab)
+"tab" = ":buffer-next"
+"S-tab" = ":buffer-previous"
+
+# Window management
+"C-h" = "jump_view_left"
+"C-j" = "jump_view_down"
+"C-k" = "jump_view_up"
+"C-l" = "jump_view_right"
