@@ -62,7 +62,7 @@ extract the tarball<br>
 
 <h2>HELIX</h2>
 xbps-install helix<br>
-
+https://github.com/DeuxEx/voidlinux/blob/main/helix_config.toml
 
 
 
