@@ -37,12 +37,22 @@ echo "Installing 32bit Video accelaration packages, Will fail on Musl"
 sudo xbps-install -Sy mesa-vaapi-32bit mesa-vdpau-32bit libspa-vulkan-32bit libva-32bit
 
 
-#nvidia install and nvidia dependencies
+echo "nvidia install and nvidia dependencies"
 sudo xbps-install nvidia nvidia-libs-32bit nvidia-opencl nvidia-docker vulkan-loader vulkan-loader-32bit Vulkan-Headers Vulkan-Tools libspa-vulkan libspa-vulkan-32bit ocl-icd ocl-icd-32bit nvidia-vaapi-driver
 
 
-#steam install and steam dependencies
+echo "steam install and steam dependencies"
 xbps-install steam
 xbps-install -S libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit mesa-dri-32bit
+
+echo "my personal setup for wayland with two monitors, using HDMI1-port"
+echo "KDE cannot send higher resolutions to screens (via kwin rules) than 1080p, so we need to install gamescope (from steam manufactorers)"
+xbps-install gamescope
+
+echo "in the steam klient use this start options"
+echo "gamescope defaults to US language, change to swedish by using: XKB_DEFAULT_LAYOUT=se"
+echo "--force-grab-cursor gets rid of the mousebug when rightclicking and the game goes to the default view, this locks the game and only way to unlock it is to press the Windows/Super key"
+echo "the rest is which resolutions i need the game to run in"
+XKB_DEFAULT_LAYOUT=se gamescope -w 2560 -h 1440 -W 2560 -H 1440 -b -O HDMI-A-1 --force-grab-cursor -- %command%
 
 
