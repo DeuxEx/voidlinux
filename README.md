@@ -68,4 +68,13 @@ https://github.com/DeuxEx/voidlinux/blob/main/helix_config.toml
 create this file: ~/.config/helix/languages.toml
 https://github.com/DeuxEx/voidlinux/blob/main/helix_languages.toml
 
+To get full support for elm4 in void:<br>
+xbps-install pkg-config<br>
+xbps-install glib-devel<br>
+xbps-install gtk4-devel<br>
+<br>
+whereis pkg-config<br>
+export PKG_CONFIG_PATH="/usr/bin/pkg-config"<br>
+declare<br>
+
 
