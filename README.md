@@ -60,7 +60,7 @@ extract the tarball<br>
 <b>untar -xvf ufw-rules.tar</b><p>
 
 <h2>HELIX</h2>
-Setup Helix with Rust support like this:
+Setup Helix with Rust support like this:<br>
 xbps-install helix<br>
 create this file: ~/.config/helix/config.toml -> add this:
 https://github.com/DeuxEx/voidlinux/blob/main/helix_config.toml
