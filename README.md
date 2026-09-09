@@ -62,10 +62,10 @@ extract the tarball<br>
 <h2>HELIX</h2>
 Setup Helix with Rust support like this:
 xbps-install helix<br>
-create this file: ~/.config/helix/config.toml
+create this file: ~/.config/helix/config.toml -> add this:
 https://github.com/DeuxEx/voidlinux/blob/main/helix_config.toml
 
-create this file: ~/.config/helix/languages.toml
+create this file: ~/.config/helix/languages.toml -> add this:
 https://github.com/DeuxEx/voidlinux/blob/main/helix_languages.toml
 
 To get full support for elm4 in void:<br>
