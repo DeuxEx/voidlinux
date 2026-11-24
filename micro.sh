@@ -4,6 +4,7 @@ xbps-install micro -Suy
 mkdir -p /etc/micro
 touch /etc/micro/settings.json
 touch /etc/micro/bindings.json
+sudo chmod -R 755 /etc/micro
 
 
 tee /etc/micro/settings.json << 'EOF'
