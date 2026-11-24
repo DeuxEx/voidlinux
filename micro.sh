@@ -41,7 +41,10 @@ EOF
 tee /etc/micro/bindings.json << 'EOF'
 {
     "Ctrl-o": "Save",
-    "Ctrl-x": "Quit",
+
+    "Ctrl-q": "None",
+    "Ctrl-x": "Quit"
+    
     "Ctrl-r": "OpenFile",
     "Ctrl-g": "ToggleHelp",
     "Ctrl-c": "CursorLocation",
