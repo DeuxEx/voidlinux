@@ -80,3 +80,5 @@ tee /etc/micro/bindings.json << 'EOF'
     "Alt-t": "AddTab"
 }
 EOF
+
+sudo chmod -R 755 /etc/micro
