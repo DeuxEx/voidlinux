@@ -1,3 +1,5 @@
+##you need to relog after this install for the changes to take effect, restarting terminal isnt enough
+
 xbps-install micro -Suy
 
 
