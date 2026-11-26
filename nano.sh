@@ -1,5 +1,5 @@
 #install nano from the xbps repository (void)
-xbps-install nano
+sudo xbps-install nano
 
 #create the backupfolder for automatic backup
 mkdir -p /home/nanobackup
@@ -951,3 +951,4 @@ EOF
 
 
 
+cp -R /root/.nano/ ~/
