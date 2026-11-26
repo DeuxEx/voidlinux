@@ -1,7 +1,10 @@
 xbps-install nano
 
-# here are the tee generated templates for some important filetypes (that i usually use)
+#create the backupfolder for automatic backup
+mkdir -p /home/nanobackup
 
+
+# here are the tee generated templates for some important filetypes (that i usually use)
 tee /etc/nanorc << 'EOF'
 #https://github.com/scopatz/nanorc/blob/master/install.sh
 set titlecolor brightwhite,blue
