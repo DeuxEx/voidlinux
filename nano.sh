@@ -6,7 +6,7 @@ mkdir -p /home/nanobackup
 
 
 # here are the tee generated templates for some important filetypes (that i usually use)
-tee /etc/nanorc << 'EOF'
+tee /etc/nanorc > /dev/null << 'EOF'
 #https://github.com/scopatz/nanorc/blob/master/install.sh
 set titlecolor brightwhite,blue
 set statuscolor brightwhite,green
@@ -53,7 +53,7 @@ EOF
 
 
 
-tee /root/.nano/toml.nanorc << 'EOF'
+tee /root/.nano/toml.nanorc > /dev/null << 'EOF'
 syntax "toml" "\.toml$"
 comment "#"
 
@@ -112,7 +112,7 @@ EOF
 
 
 
-tee /root/.nano/sql.nanorc << 'EOF'
+tee /root/.nano/sql.nanorc > /dev/null << 'EOF'
 syntax "SQL" "\.sql$" "sqliterc$"
 
 icolor cyan "\<(ALL|ASC|AS|ALTER|AND|ADD|AUTO_INCREMENT)\>"
@@ -151,7 +151,7 @@ EOF
 
 
 
-tee /root/.nano/man.nanorc << 'EOF'
+tee /root/.nano/man.nanorc > /dev/null << 'EOF'
 ## Here is an example for manpages.
 ##
 syntax "Man" "\.[1-9]x?$"
@@ -168,7 +168,7 @@ EOF
 
 
 
-tee /root/.nano/ini.nanorc << 'EOF'
+tee /root/.nano/ini.nanorc > /dev/null << 'EOF'
 syntax "INI" "\.(ini|desktop|lfl|override|cfg)$" "(mimeapps\.list|pinforc|setup\.cfg)$" "weechat/.+\.conf$"
 header "^\[[A-Za-z]+\]$"
 
@@ -184,7 +184,7 @@ EOF
 
 
 
-tee /root/.nano/dockerfile.nanorc << 'EOF'
+tee /root/.nano/dockerfile.nanorc > /dev/null << 'EOF'
 ## Syntax highlighting for Dockerfiles
 syntax "Dockerfile" "Dockerfile[^/]*$" "\.dockerfile$"
 
@@ -215,7 +215,7 @@ EOF
 
 
 
-tee /root/.nano/batch.nanorc << 'EOF'
+tee /root/.nano/batch.nanorc > /dev/null << 'EOF'
 ## Here is an example for Batch file shell script.
 ## Author: davidhcefx (https://github.com/davidhcefx), based on Mitch Bumgarner's version.
 ## License: MIT License
@@ -254,7 +254,7 @@ EOF
 
 
 
-tee /root/.nano/yaml.nanorc << 'EOF'
+tee /root/.nano/yaml.nanorc > /dev/null << 'EOF'
 syntax "yaml" "\.ya?ml$"
 #comment "#"
 header "^---" "%YAML"
@@ -283,7 +283,7 @@ EOF
 
 
 
-tee /root/.nano/xml.nanorc << 'EOF'
+tee /root/.nano/xml.nanorc > /dev/null << 'EOF'
 ## Here is an example for xml files.
 ##
 
@@ -306,7 +306,7 @@ EOF
 
 
 
-tee /root/.nano/systemd.nanorc << 'EOF'
+tee /root/.nano/systemd.nanorc > /dev/null << 'EOF'
 syntax "Systemd" "\.(service|socket|timer)$"
 header "^\[Unit\]$"
 
@@ -323,7 +323,7 @@ EOF
 
 
 
-tee /root/.nano/python.nanorc << 'EOF'
+tee /root/.nano/python.nanorc > /dev/null << 'EOF'
 ## Python syntax highlighting rules for Nano
 
 syntax "python" "\.py$"
@@ -384,7 +384,7 @@ EOF
 
 
 
-tee /root/.nano/nanorc.nanorc << 'EOF'
+tee /root/.nano/nanorc.nanorc > /dev/null << 'EOF'
 ## Here is an example for nanorc files.
 ##
 syntax "Nanorc" "\.?nanorc$"
@@ -438,7 +438,7 @@ EOF
 
 
 
-tee /root/.nano/markdown.nanorc << 'EOF'
+tee /root/.nano/markdown.nanorc > /dev/null << 'EOF'
 syntax "Markdown" "\.(md|mkd|mkdn|markdown)$"
 
 # Tables (Github extension)
@@ -494,7 +494,7 @@ EOF
 
 
 
-tee /root/.nano/lua.nanorc << 'EOF'
+tee /root/.nano/lua.nanorc > /dev/null << 'EOF'
 ##############################################################################
 #
 # Lua syntax highlighting for Nano.
@@ -579,7 +579,7 @@ EOF
 
 
 
-tee /root/.nano/css.nanorc << 'EOF'
+tee /root/.nano/css.nanorc > /dev/null << 'EOF'
 ## Here is an example for css files.
 ##
 
@@ -597,7 +597,7 @@ EOF
 
 
 
-tee /root/.nano/conf.nanorc << 'EOF'
+tee /root/.nano/conf.nanorc > /dev/null << 'EOF'
 ## Here is an example for nanorc files.
 ##
 syntax "Conf" "\.c[o]?nf$"
@@ -613,7 +613,7 @@ EOF
 
 
 
-tee /root/.nano/c.nanorc << 'EOF'
+tee /root/.nano/c.nanorc > /dev/null << 'EOF'
 ## Here is an example for C/C++.
 ##
 syntax "C" "\.(c(c|pp|xx)?|C)$" "\.(h(h|pp|xx)?|H)$" "\.ii?$" "\.(def)$" "\.ino"
@@ -670,7 +670,7 @@ EOF
 
 
 
-tee /root/.nano/csharp.nanorc << 'EOF'
+tee /root/.nano/csharp.nanorc > /dev/null << 'EOF'
 syntax "C#" "\.cs$"
 
 # Class
@@ -701,7 +701,7 @@ EOF
 
 
 
-tee /root/.nano/git.nanorc << 'EOF'
+tee /root/.nano/git.nanorc > /dev/null << 'EOF'
 syntax "git-config" "git(config|modules)$|\.git/config$"
 
 color brightcyan "\<(true|false)\>"
@@ -785,7 +785,7 @@ EOF
 
 
 
-tee /root/.nano/json.nanorc << 'EOF'
+tee /root/.nano/json.nanorc > /dev/null << 'EOF'
 syntax "JSON" "\.json$"
 header "^\{$"
 # You can't add a comment to JSON.
@@ -802,7 +802,7 @@ color ,red "	+ +| +	+"
 EOF
 
 
-tee /root/.nano/rust.nanorc << 'EOF'
+tee /root/.nano/rust.nanorc > /dev/null << 'EOF'
 # Nano configuration for Rust
 # Copyright 2015 The Rust Project Developers.
 #
@@ -849,7 +849,7 @@ EOF
 
 
 
-tee /root/.nano/sh.nanorc << 'EOF'
+tee /root/.nano/sh.nanorc > /dev/null << 'EOF'
 ## Here is an example for Bourne shell scripts.
 ##
 syntax "SH" "\.sh$" "\.ash" "\.bashrc" "bashrc" "\.bash_aliases" "bash_aliases" "\.bash_functions" "bash_functions" "\.bash_login" "\.bash_logout" "\.bash_profile" "bash_profile" "\.profile" "revise\..+$"
@@ -877,7 +877,7 @@ EOF
 
 
 
-tee /root/.nano/xml.nanorc << 'EOF'
+tee /root/.nano/xml.nanorc > /dev/null << 'EOF'
 ## Here is an example for xml files.
 ##
 
