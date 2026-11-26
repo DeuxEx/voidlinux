@@ -8,25 +8,76 @@ mkdir -p /home/nanobackup
 # here are the tee generated templates for some important filetypes (that i usually use)
 tee /etc/nanorc > /dev/null << 'EOF'
 #https://github.com/scopatz/nanorc/blob/master/install.sh
+
+# ==============================================================================
+# 1. CODING & YAML/PYTHON INDENTATION (CRITICAL FOR DEVOPS)
+# ==============================================================================
+set autoindent
+set tabsize 4
+# Convert tabs to spaces (prevents YAML/Python syntax errors; use Alt+P to toggle)
+set tabstospaces
+# Backspace deletes a full indentation level (4 spaces) at once
+set smarthome
+set trimblanks
+
+# ==============================================================================
+# 2. UI, LINE NUMBERS & VISUAL GUIDES
+# ==============================================================================
+set linenumbers
+set minibar
+set constantshow
+# Subtle vertical guide at 80 chars for clean code/commit formatting
+set guidestripe 80
+# Show trailing whitespace and tabs visually (great for catching broken YAML)
+set whitespace "»·"
+
+# High-contrast colors (matching dark DevOps themes)
 set titlecolor brightwhite,blue
 set statuscolor brightwhite,green
 set numbercolor cyan
 set selectedcolor white,magenta
-set linenumbers
-set softwrap
-set autoindent
-set tabsize 4
+set stripecolor ,black
+
+# ==============================================================================
+# 3. NAVIGATION, SEARCH & MOUSE
+# ==============================================================================
+# Click to place cursor & scroll with mouse wheel (hold Shift to select for Kitty)
+set mouse
+set zap
+set indicator
+# Smart case-insensitive search (case-sensitive only if you type uppercase)
+set casesensitive
+set regexp
+
+# ==============================================================================
+# 4. BACKUPS & SAFETY
+# ==============================================================================
 set backup
 set backupdir "/home/nanobackup"
-set minibar
-#set constantshow = "gotta have line numbers somewhere and the status line takes up space either way, unless you minibar/zero"
-set constantshow
-#set zap = "Let an unmodified Backspace or Delete erase the marked region (instead of a single character, and without affecting the cutbuffer)".
-set zap
-bind ^c copy main
-bind ^v paste main
-bind ^z undo main
-bind DEL cut main
+
+# Remember cursor position when reopening files
+set positionlog
+
+# ==============================================================================
+# 5. MODERN KEYBINDINGS (DESKTOP-STYLE + DEVOPS EXTRAS)
+# ==============================================================================
+bind ^C copy main
+bind ^V paste main
+bind ^Z undo main
+bind ^Y redo main
+bind ^F whereis main
+bind ^S savefile main
+bind ^Q exit main
+# Keep Delete as normal delete (so it doesn't overwrite your Ctrl+C clipboard)
+bind DEL delete main
+# Comment/uncomment line or selected block with Ctrl+/
+bind ^_ comment main
+
+# ==============================================================================
+# 6. SYNTAX HIGHLIGHTING (VOID LINUX SYSTEM PATHS)
+# ==============================================================================
+include "/usr/share/nano/*.nanorc"
+include "/usr/share/nano/extra/*.nanorc"
 include "~/.nano/sh.nanorc"
 include "~/.nano/rust.nanorc"
 include "~/.nano/json.nanorc"
