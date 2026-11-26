@@ -37,7 +37,154 @@ include "~/.nano/python.nanorc"
 include "~/.nano/systemd.nanorc"
 include "~/.nano/xml.nanorc"
 include "~/.nano/yaml.nanorc"
+include "~/.nano/batch.nanorc"
+include "~/.nano/dockerfile.nanorc"
+include "~/.nano/ini.nanorc"
+include "~/.nano/man.nanorc"
+include "~/.nano/sql.nanorc"
 EOF
+
+
+tee /root/.nano/sql.nanorc << 'EOF'
+syntax "SQL" "\.sql$" "sqliterc$"
+
+icolor cyan "\<(ALL|ASC|AS|ALTER|AND|ADD|AUTO_INCREMENT)\>"
+icolor cyan "\<(BETWEEN|BINARY|BOTH|BY|BOOLEAN)\>"
+icolor cyan "\<(CHANGE|CHECK|COLUMNS|COLUMN|CROSS|CREATE)\>"
+icolor cyan "\<(DATABASES|DATABASE|DATA|DELAYED|DESCRIBE|DESC|DISTINCT|DELETE|DROP|DEFAULT)\>"
+icolor cyan "\<(ENCLOSED|ESCAPED|EXISTS|EXPLAIN)\>"
+icolor cyan "\<(FIELDS|FIELD|FLUSH|FOR|FOREIGN|FUNCTION|FROM)\>"
+icolor cyan "\<(GROUP|GRANT|HAVING)\>"
+icolor cyan "\<(IGNORE|INDEX|INFILE|INSERT|INNER|INTO|IDENTIFIED|IN|IS|IF)\>"
+icolor cyan "\<(JOIN|KEYS|KILL|KEY)\>"
+icolor cyan "\<(LEADING|LIKE|LIMIT|LINES|LOAD|LOCAL|LOCK|LOW_PRIORITY|LEFT|LANGUAGE)\>"
+icolor cyan "\<(MODIFY|NATURAL|NOT|NULL|NEXTVAL)\>"
+icolor cyan "\<(OPTIMIZE|OPTION|OPTIONALLY|ORDER|OUTFILE|OR|OUTER|ON)\>"
+icolor cyan "\<(PROCEDURE|PROCEDURAL|PRIMARY)\>"
+icolor cyan "\<(READ|REFERENCES|REGEXP|RENAME|REPLACE|RETURN|REVOKE|RLIKE|RIGHT)\>"
+icolor cyan "\<(SHOW|SONAME|STATUS|STRAIGHT_JOIN|SELECT|SETVAL|SET)\>"
+icolor cyan "\<(TABLES|TERMINATED|TO|TRAILING|TRUNCATE|TABLE|TEMPORARY|TRIGGER|TRUSTED)\>"
+icolor cyan "\<(UNIQUE|UNLOCK|USE|USING|UPDATE|VALUES|VARIABLES|VIEW)\>"
+icolor cyan "\<(WITH|WRITE|WHERE|ZEROFILL|TYPE|XOR)\>"
+color green     "\<(VARCHAR|TINYINT|TEXT|DATE|SMALLINT|MEDIUMINT|INT|INTEGER|BIGINT|FLOAT|DOUBLE|DECIMAL|DATETIME|TIMESTAMP|TIME|YEAR|UNSIGNED|CHAR|TINYBLOB|TINYTEXT|BLOB|MEDIUMBLOB|MEDIUMTEXT|LONGBLOB|LONGTEXT|ENUM|BOOL|BINARY|VARBINARY)\>"
+
+# SQLite meta commands
+icolor cyan "\.\<(databases|dump|echo|exit|explain|header(s)?|help)\>"
+icolor cyan "\.\<(import|indices|mode|nullvalue|output|prompt|quit|read)\>"
+icolor cyan "\.\<(schema|separator|show|tables|timeout|width)\>"
+color brightcyan  "\<(ON|OFF)\>"
+
+color blue   "\<([0-9]+)\>"
+color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
+color yellow   "`(\\.|[^\\`])*`"
+color brightblack  "\-\-.*$"
+color ,green "[[:space:]]+$"
+color ,red "	+ +| +	+"
+EOF
+
+
+
+tee /root/.nano/man.nanorc << 'EOF'
+## Here is an example for manpages.
+##
+syntax "Man" "\.[1-9]x?$"
+magic "troff or preprocessor input"
+comment ".\""
+
+color green "\.(S|T)H.*$"
+color brightgreen "\.(S|T)H" "\.TP"
+color brightred "\.(BR?|I[PR]?).*$"
+color brightblue "\.(BR?|I[PR]?|PP)"
+color brightwhite "\\f[BIPR]"
+color yellow "\.(br|DS|RS|RE|PD)"
+EOF
+
+
+
+tee /root/.nano/ini.nanorc << 'EOF'
+syntax "INI" "\.(ini|desktop|lfl|override|cfg)$" "(mimeapps\.list|pinforc|setup\.cfg)$" "weechat/.+\.conf$"
+header "^\[[A-Za-z]+\]$"
+
+color brightcyan "\<(true|false)\>"
+color cyan "^[[:space:]]*[^=]*="
+color brightmagenta "^[[:space:]]*\[.*\]$"
+color red "[=;]"
+color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
+color brightblue "(^|[[:space:]])(#([^{].*)?|;.*)$"
+color ,green "[[:space:]]+$"
+color ,red "	+ +| +	+"
+EOF
+
+
+
+tee /root/.nano/dockerfile.nanorc << 'EOF'
+## Syntax highlighting for Dockerfiles
+syntax "Dockerfile" "Dockerfile[^/]*$" "\.dockerfile$"
+
+## Keywords
+icolor red "^(FROM|RUN|CMD|LABEL|MAINTAINER|EXPOSE|ENV|ADD|COPY|ENTRYPOINT|VOLUME|USER|WORKDIR|ARG|ONBUILD|STOPSIGNAL|HEALTHCHECK|SHELL)[[:space:]]"
+
+## Brackets & parenthesis
+color brightgreen "(\(|\)|\[|\])"
+
+## Double ampersand
+color brightmagenta "&&"
+
+## Comments
+icolor cyan "^[[:space:]]*#.*$"
+
+## Blank space at EOL
+color ,green "[[:space:]]+$"
+
+## Strings, single-quoted
+color brightwhite "'([^']|(\\'))*'" "%[qw]\{[^}]*\}" "%[qw]\([^)]*\)" "%[qw]<[^>]*>" "%[qw]\[[^]]*\]" "%[qw]\$[^$]*\$" "%[qw]\^[^^]*\^" "%[qw]![^!]*!"
+
+## Strings, double-quoted
+color brightwhite ""([^"]|(\\"))*"" "%[QW]?\{[^}]*\}" "%[QW]?\([^)]*\)" "%[QW]?<[^>]*>" "%[QW]?\[[^]]*\]" "%[QW]?\$[^$]*\$" "%[QW]?\^[^^]*\^" "%[QW]?![^!]*!"
+
+## Single and double quotes
+color brightyellow "('|\")"
+EOF
+
+
+
+tee /root/.nano/batch.nanorc << 'EOF'
+## Here is an example for Batch file shell script.
+## Author: davidhcefx (https://github.com/davidhcefx), based on Mitch Bumgarner's version.
+## License: MIT License
+
+syntax "batch" "\.(bat|cmd)$"
+header "^@[eE](cho|CHO) (on|off|ON|OFF)"
+comment "::"
+
+# Native commands, symbols, and comparisons.
+icolor green "\<(ASSOC|CALL|CD|CLS|CMDEXTVERSION|COLOR|COPY|DATE|DEL|DIR|ECHO|ENDLOCAL|ERASE|ERRORLEVEL|EXIT|FOR|FTYPE|GOTO|IF|MD|MKLINK|MOVE|PATH|PAUSE|POPD|PROMPT|PUSHD|RD|REM|REN|SET|SETLOCAL|SHIFT|START|TIME|TITLE|TYPE|VER|VERIFY|VOL)\>"
+icolor green "\<(EQU|NEQ|LSS|LEQ|GTR|GEQ|DEFINED|EXIST|NOT)\>"
+color  green "[:|<>=&@\\^]"
+
+# Options.
+color brightmagenta "[[:blank:]]/[A-Za-z]+\>"
+
+# Common commands. (with Sublime and Github highlighting as a reference)
+icolor brightblue "\<(APPEND|ARP|AT|ATTRIB|AUTOFAIL|BACKUP|BCDBOOT|BCDEDIT|BITSADMIN|BREAK|CACLS|CERTREQ|CERTUTIL|CHANGE|CHCP|CHDIR|CHKDSK|CHKNTFS|CHOICE|CIPHER|CleanMgr|CLIP|CMD|CMDKEY|COMP|COMPACT|CONVERT|CSVDE|DEFRAG|DELTREE|DevCon|DIRQUOTA|DISKCOMP|DISKCOPY|DISKPART|DISKSHADOW|DNSCMD|DOSKEY|DriverQuery|DSACLs|DSAdd|DSGet|DSQuery|DSMod|DSMove|DSRM|Dsmgmt|EVENTCREATE|EXPAND|EXPLORER|EXTRACT|FC|FIND|FINDSTR|FORFILES|FORMAT|FREEDISK|FSUTIL|FTP|GETMAC|GPRESULT|GPUPDATE|GRAFTABL|HELP|HOSTNAME|iCACLS|IEXPRESS|IPCONFIG|INUSE|KEYB|LABEL|LODCTR|LOGMAN|LOGOFF|MAKECAB|MKDIR|MODE|MORE|MOUNTVOL|MSG|MSIEXEC|MSINFO32|MSTSC|NET|NETDOM|NETSH|NBTSTAT|NETSTAT|NLTEST|NSLOOKUP|NTBACKUP|NTDSUtil|OPENFILES|PATHPING|PING|POWERCFG|PRINT|PRNCNFG|PRNMNGR|Query|RASDIAL|RASPHONE|RECOVER|REG|REGEDIT|REGSVR32|REGINI|RENAME|REPLACE|Reset|RESTORE|RMDIR|ROBOCOPY|ROUTE|RUNAS|RUNDLL32|SC|SCHTASKS|SetSPN|SETX|SFC|SHUTDOWN|SORT|SSH|SUBINACL|SUBST|SYSTEMINFO|TAKEOWN|TASKLIST|TASKKILL|TELNET|TIMEOUT|TRACERT|TREE|TSDISCON|TSKILL|TypePerf|TZUTIL|VSSADMIN|W32TM|WAITFOR|WBADMIN|WECUTIL|WEVTUTIL|WHERE|WHOAMI|WINRM|WINRS|WMIC|XCACLS|XCOPY)\>"
+
+# Variable names. (spaces not allowed)
+color brightred "%([[:alpha:]`~@#$*(){}:',.?+=_-]|\[|\])([[:alnum:]`~@#$*(){}:',.?+=_-]|\[|\])*%"
+color brightred "!([[:alnum:]`~@#$%*(){}:',.?+=_-]|\[|\])([[:alnum:]`~@#$%*(){}:',.?+=_-]|\[|\])*!"
+
+# Parameter names for arguments and loop.
+color brightred "%(~[[:alpha:]$]*)?[0-9*]\>" "%%(~[[:alpha:]$]*)?[[:alpha:]]\>"
+
+# Comments.
+icolor cyan "^[[:space:]]*(\<rem\>|::).*"
+
+# Strings.
+icolor brightyellow ""(\^.|[^"])*""
+
+# Trailling whitespace
+color ,green "[[:space:]]+$"
+EOF
+
 
 
 tee /root/.nano/yaml.nanorc << 'EOF'
