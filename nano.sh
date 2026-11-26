@@ -1,3 +1,4 @@
+#install nano from the xbps repository (void)
 xbps-install nano
 
 #create the backupfolder for automatic backup
