@@ -951,4 +951,4 @@ EOF
 
 
 
-cp -R /root/.nano/ ~/
+cp -f -R /root/.nano/ ~/
