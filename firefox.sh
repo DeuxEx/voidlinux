@@ -10,7 +10,7 @@ EOF
 
 sudo tee /usr/lib/firefox/firefox.cfg > /dev/null << 'EOF'
 // Firefox AutoConfig - System-wide custom preferences
-defaultPref("widget.gtk.overlay-scrollbars.enabled", false);
+defaultPref("widget.gtk.overlay-scrollbars.enabled", true);
 defaultPref("widget.non-native-theme.scrollbar.size.override", 18);
 defaultPref("widget.non-native-theme.scrollbar.style", 4);
 defaultPref("browser.backspace_action", 1);
