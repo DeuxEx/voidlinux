@@ -27,7 +27,7 @@ set linenumbers
 set minibar
 set constantshow
 # Subtle vertical guide at 80 chars for clean code/commit formatting
-set guidestripe 80
+# set guidestripe 80
 # Show trailing whitespace and tabs visually (great for catching broken YAML)
 set whitespace "»·"
 
