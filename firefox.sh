@@ -1,4 +1,4 @@
-xbps-install firefox
+sudo xbps-install firefox
 
 #create system-wide conf for scrollbars and backspace to go back
 sudo mkdir -p /usr/lib/firefox/defaults/pref
